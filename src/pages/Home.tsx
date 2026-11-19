@@ -10,6 +10,15 @@ import {buildMobileHomeRowBounds,mobileHomeVisualGridPlacement,nearestMobileHome
 import {auditMobileHomeGeometry,sameMobileHomeGeometryAudit,type MobileHomeGeometryAudit,type MobileHomeRect} from "../core/mobileHomeGeometry";
 import {db,setSetting} from "../core/db";
 import {compressImage} from "../core/imageAssets";
+import {
+  anniversaryCache,
+  anniversaryDaysTo,
+  anniversarySummary,
+  anniversaryWhenText,
+  loadAnniversaries,
+  type AnniversaryItem
+} from "../core/anniversary";
+import "./AnniversaryWidget.css";
 import {placeFloatingToolbar} from "../core/floatingToolbar";
 import {useStore} from "../core/store";
 import type {AppearanceSettings,AppearanceSource,DesktopAppId,DesktopItem,HeroWidgetData,ImageAsset} from "../core/types";
@@ -251,13 +260,18 @@ export default function Home(){
     const swipe=pageSwipe.current;if(!swipe||swipe.pointerId!==event.pointerId)return;if(editing||quickEditing||dragRuntimeRef.current?.active){pageSwipe.current=null;return}
     swipe.lastX=event.clientX;swipe.lastY=event.clientY;const dx=swipe.lastX-swipe.startX,dy=swipe.lastY-swipe.startY,absX=Math.abs(dx),absY=Math.abs(dy);
     if(swipe.axis==="pending"&&Math.max(absX,absY)>=10){if(absX>absY*1.25){swipe.axis="horizontal";clearHold();cancelPendingDrag();suppressOpen.current=true}else if(absY>absX*1.25)swipe.axis="vertical"}
-    if(swipe.axis==="horizontal"&&event.cancelable)event.preventDefault();
+    if(swipe.axis==="horizontal"){
+      if(event.cancelable)event.preventDefault();
+      const el=desktopRef.current;
+      if(el){const edge=(page===0&&dx>0)||(page===pages-1&&dx<0),shift=dx*(edge?0.26:0.52);el.style.transition="none";el.style.transform=`translateX(${shift}px)`;el.style.opacity=String(1-Math.min(Math.abs(shift)/1000,0.22))}
+    }
   };
   const finishPageSwipe=(event:React.PointerEvent<HTMLDivElement>,cancelled=false)=>{
     const swipe=pageSwipe.current;if(!swipe||swipe.pointerId!==event.pointerId)return;pageSwipe.current=null;
     if(swipe.axis!=="horizontal"){if(cancelled)suppressOpen.current=false;return}
     clearHold();cancelPendingDrag();suppressOpen.current=true;const dx=(event.clientX||swipe.lastX)-swipe.startX;
-    if(!cancelled&&Math.abs(dx)>=48)setPage(current=>clamp(current+(dx<0?1:-1),0,pages-1));if(event.cancelable)event.preventDefault();releaseSwipeSuppression();
+    const nextPage=clamp(page+(dx<0?1:-1),0,pages-1);
+    if(!cancelled&&Math.abs(dx)>=48&&nextPage!==page)changePageAnimated(nextPage,dx<0?1:-1);else if(swipe.axis==="horizontal")pagesReset();if(event.cancelable)event.preventDefault();releaseSwipeSuppression();
   };
 
   const finishEditing=()=>{clearHold();clearAppPress();cancelPendingDrag();setImageTools(null);setTextEdit(null);setEditing(false);setDragError("")};
@@ -278,7 +292,10 @@ export default function Home(){
   const saveImageSource=async(source:AppearanceSource|undefined)=>{const target=imageTools;if(!target||target.busy)return;patchImageTools({busy:true,error:undefined});try{await updateWidget(target.itemId,target.field,source);setImageTools(null)}catch{patchImageTools({busy:false,error:"保存失败，请重试"})}};
   const chooseImage=async(file?:File)=>{const target=imageTools;if(!file||!target||target.busy)return;patchImageTools({busy:true,error:undefined});try{const asset=await compressImage(file,"widget");await db.imageAssets.put(asset);await updateWidget(target.itemId,target.field,{type:"asset",value:asset.id});setImageTools(null)}catch{patchImageTools({busy:false,error:"图片处理失败，请重试"})}};
   const applyImageUrl=()=>{const value=imageTools?.url.trim();if(!value){patchImageTools({error:"请输入图片 URL"});return}void saveImageSource({type:"url",value})};
-  const switchPage=(index:number)=>{if(quickEditing||editing||dragRuntimeRef.current)return;setImageTools(null);setPage(index)};
+  const pagesReset=()=>{const el=desktopRef.current;if(!el)return;el.style.transition="transform .22s cubic-bezier(.22,.61,.36,1), opacity .22s ease";el.style.transform="translateX(0px)";el.style.opacity="1"};
+  const pagesSettle=(dir:number)=>{const el=desktopRef.current;if(!el)return;el.style.transition="none";el.style.transform=`translateX(${dir*26}px)`;el.style.opacity="0";requestAnimationFrame(()=>requestAnimationFrame(()=>{const e=desktopRef.current;if(!e)return;e.style.transition="transform .26s cubic-bezier(.22,.61,.36,1), opacity .26s ease";e.style.transform="translateX(0px)";e.style.opacity="1"}))};
+  const changePageAnimated=(next:number,dir:number)=>{if(next===page){pagesReset();return}const el=desktopRef.current;if(el){el.style.transition="transform .2s cubic-bezier(.22,.61,.36,1), opacity .2s ease";el.style.transform=`translateX(${-dir*44}px)`;el.style.opacity="0"}window.setTimeout(()=>{setPage(next);pagesSettle(dir)},190)};
+  const switchPage=(index:number)=>{if(quickEditing||editing||dragRuntimeRef.current)return;setImageTools(null);changePageAnimated(index,index>page?1:-1)};
   const homePointerDown=(event:React.PointerEvent<HTMLDivElement>)=>{
     const target=event.target as HTMLElement;if(target.closest(".widget-image-tools")||target.closest(".widget-inline-text-input")||target.closest("[data-widget-image-trigger]")||target.closest(".desktop-edit-done"))return;
     if(quickEditing){setImageTools(null);clearHold();return}if(editing&&!target.closest(".desktop-app")&&!target.closest(".dock-app")){finishEditing();return}beginHold();
@@ -310,10 +327,25 @@ function AppItem({item,app,assets,source,badge,editing,hidden,onOpen,onPointerDo
   return <button className={"desktop-item desktop-app "+(hidden?"drag-source-hidden":"")} style={style} aria-grabbed={hidden} data-editing={editing||undefined} data-reorder-key={item.appId} data-app-id={item.appId} onContextMenu={event=>event.preventDefault()} onPointerDown={onPointerDown} onClick={onOpen}><AppVisual app={app} source={source} assets={assets} badge={badge}/></button>;
 }
 function DockApp({id,name,icon:Icon,source,assets,hidden,target,onOpen,onPointerDown}:{id:DesktopAppId;name:string;icon:(typeof DESKTOP_APPS)[number]["icon"];source?:AppearanceSource;assets:ImageAsset[];hidden:boolean;target:boolean;onOpen:()=>void;onPointerDown:(event:React.PointerEvent<HTMLButtonElement>)=>void}){const src=sourceUrl(source,assets);return <button className={"dock-app "+(hidden?"drag-source-hidden ":"")+(target?"dock-drop-target":"")} aria-label={name} data-reorder-key={id} data-app-id={id} onContextMenu={event=>event.preventDefault()} onPointerDown={onPointerDown} onClick={onOpen}>{src?<img src={src} alt=""/>:<span><Icon/></span>}<small>{name}</small></button>}
+function AnniversaryWidgetContent(){
+  const nav=useNavigate();
+  const [items,setItems]=useState<AnniversaryItem[]>(anniversaryCache());
+  useEffect(()=>{let cancelled=false;void loadAnniversaries().then(list=>{if(!cancelled)setItems(list)});return()=>{cancelled=true}},[]);
+  const nearest=useMemo(()=>items.length?[...items].sort((a,b)=>anniversaryDaysTo(a)-anniversaryDaysTo(b))[0]:null,[items]);
+  const open=()=>nav("/anniversary");
+  if(!nearest)return <button type="button" className="anniv-widget empty" onClick={open}><span className="anniv-widget-label">纪念日</span><b>还没有日子</b><small>点一下去记</small></button>;
+  const {number,caption}=anniversarySummary(nearest);
+  return <button type="button" className="anniv-widget" onClick={open}>
+    <span className="anniv-widget-label">纪念日{nearest.repeat==="yearly"?" · 每年":nearest.repeat==="monthly"?" · 每月":""}</span>
+    <b className="anniv-widget-title">{nearest.title}</b>
+    <span className="anniv-widget-count"><strong>{number}</strong><small>{caption}</small></span>
+    <span className="anniv-widget-date">{anniversaryWhenText(nearest)}</span>
+  </button>;
+}
 function WidgetItem({item,assets,textEditor,onHold,onEnd,onImageEdit}:{item:DesktopItem;assets:ImageAsset[];textEditor:TextEditorBindings;onHold:()=>void;onEnd:()=>void;onImageEdit:(field:WidgetEditField,element:HTMLElement)=>void}){
   const visual=mobileHomeVisualGridPlacement(item.y,item.h),style={"--x":item.x,"--y":item.y,"--w":item.w,"--h":item.h,"--pwa-row-start":visual.start,"--pwa-row-end":visual.end} as React.CSSProperties;
   return <div className={"desktop-item desktop-widget widget-"+item.widgetType} style={style} onPointerDown={event=>{event.stopPropagation();onHold()}} onPointerUp={onEnd} onPointerCancel={onEnd}>
-    {item.widgetType==="hero-profile"?<HeroWidget itemId={item.id} data={normalizeHeroData(item.hero)} assets={assets} editor={textEditor} onImageEdit={onImageEdit}/>:item.widgetType==="profile-status"?<ProfileStatusWidget item={item} assets={assets} editor={textEditor} onImageEdit={onImageEdit}/>:item.widgetType==="compliment-bubble"?<ComplimentBubbleWidget item={item} editor={textEditor}/>:<div className="widget-placeholder"><ImagePlus/><span>图片组件</span></div>}
+    {item.widgetType==="hero-profile"?<HeroWidget itemId={item.id} data={normalizeHeroData(item.hero)} assets={assets} editor={textEditor} onImageEdit={onImageEdit}/>:item.widgetType==="profile-status"?<ProfileStatusWidget item={item} assets={assets} editor={textEditor} onImageEdit={onImageEdit}/>:item.widgetType==="compliment-bubble"?<ComplimentBubbleWidget item={item} editor={textEditor}/>:item.widgetType==="anniversary-card"?<AnniversaryWidgetContent/>:<div className="widget-placeholder"><ImagePlus/><span>图片组件</span></div>}
     {textEditor.active?.itemId===item.id&&textEditor.active.error&&<span className="widget-inline-edit-error">{textEditor.active.error}</span>}
   </div>;
 }
