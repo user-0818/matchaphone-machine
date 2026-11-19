@@ -7,7 +7,7 @@ import "./LockScreen.css";
  * 注意：密码写死在这里，改密码只需要改这一个常量（位数会自动跟着变）。
  */
 const PASSWORD = "242628";
-const FONT_HREF = "https://miaoda.feishu.cn/fonts/css2?family=Cormorant+Garamond:wght@300;400;500&display=swap";
+const FONT_HREF = "https://miaoda.feishu.cn/fonts/css2?family=Playfair+Display:ital,wght@1,400;1,500&display=swap";
 
 const rand = (min: number, max: number) => min + Math.random() * (max - min);
 
@@ -154,7 +154,7 @@ export function LockScreen({ onUnlock }: { onUnlock: () => void }) {
       <div className="sw-grain" />
       <div className="sw-vignette" />
 
-      <div className="sw-brand" aria-label="sweetheart">sweetheart</div>
+      <div className="sw-brand" aria-label="sweetheart"><span className="sw-write">sweetheart</span><span className="sw-pen" /></div>
       <div className="sw-swipe" onClick={openPad} role="button" aria-label="上滑输入密码">上滑输入密码</div>
 
       <div className="sw-pad">
