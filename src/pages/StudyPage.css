@@ -189,7 +189,7 @@ html[data-chacha-theme=dark] .study-page {
   font-variant-numeric: tabular-nums;
 }
 
-/* 「仅角色」标记 */
+/* 小标记（监督员等） */
 .study-badge {
   display: inline-flex;
   align-items: center;
@@ -207,9 +207,40 @@ html[data-chacha-theme=dark] .study-page {
   color: var(--st-accent);
 }
 
-/* 角色专属科目的卡：颜色淡一点，表示不用你操作 */
-.study-card.character {
-  background: var(--st-accent-soft);
+/* 角色材料分组 */
+.study-material-group {
+  margin-bottom: 14px;
+}
+
+.study-material-group h4 {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0 0 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--st-sub);
+}
+
+.study-material-group h4 em {
+  padding: 0 6px;
+  height: 16px;
+  border-radius: 999px;
+  background: var(--st-accent-bg);
+  color: var(--st-accent);
+  font-size: 10px;
+  font-style: normal;
+  line-height: 16px;
+  font-variant-numeric: tabular-nums;
+}
+
+.study-material-empty {
+  margin: 0 0 10px;
+  padding: 12px 14px;
+  border: 1px dashed var(--st-input-border);
+  border-radius: 13px;
+  color: var(--st-muted);
+  font-size: 12px;
 }
 
 /* ---------- 科目专区 ---------- */

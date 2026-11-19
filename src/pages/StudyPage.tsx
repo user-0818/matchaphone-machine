@@ -8,8 +8,8 @@ import "./StudyPage.css";
 
 /* ============================================================
    学习 App 首页（科目总览）
-   —— 只搭框架：科目分区、今日进度、监督员入口；
-      具体的学习内容、题库、提示词注入先留空。
+   —— 主科：今日进度 + 监督员
+   —— 副科：地理可排任务；物理 / 化学 / 生物 只作为入口，不加标注
    ============================================================ */
 
 export default function StudyPage() {
@@ -37,8 +37,18 @@ export default function StudyPage() {
     return characters.find((item) => item.id === id)?.name ?? "";
   };
 
-  const today = studyTodayKey();
   const todayText = `${new Date().getMonth() + 1}月${new Date().getDate()}日`;
+
+  const subjectName = (id: string) => STUDY_SUBJECTS.find((item) => item.id === id)?.name ?? "";
+  const recentInteractions = [...(data?.interactions ?? [])]
+    .filter((item) => item.subjectId !== "biology")
+    .sort((a, b) => b.createdAt - a.createdAt)
+    .slice(0, 5)
+    .map((item) => ({
+      ...item,
+      from: characters.find((c) => c.id === item.fromCharacterId)?.name ?? "角色",
+      to: characters.find((c) => c.id === item.toCharacterId)?.name ?? "角色"
+    }));
 
   return (
     <div className="app-page study-page">
@@ -54,14 +64,12 @@ export default function StudyPage() {
                 : "还没有排任务，先给主科各写一条"}
             </small>
           </div>
-          <strong>
-            {doneCount}/3
-          </strong>
+          <strong>{doneCount}/3</strong>
         </section>
 
         <h3 className="study-section-title">
           <GraduationCap size={13} />
-          主科专区 <em>你学，角色监督</em>
+          主科专区
         </h3>
         <div className="study-grid core">
           {coreSubjects.map((subject) => {
@@ -92,42 +100,59 @@ export default function StudyPage() {
           })}
         </div>
 
-        <h3 className="study-section-title">
-          副科 <em>地理你也能学，理化生只有角色在学</em>
-        </h3>
+        <h3 className="study-section-title">副科</h3>
         <div className="study-grid">
           {minorSubjects.map((subject) => {
-            const isCharacterOnly = subject.scope === "character";
-            const tasks = data && !isCharacterOnly ? todayTasksOf(data, subject.id) : [];
+            const isCharacterScope = subject.scope === "character";
+            const tasks = data && !isCharacterScope ? todayTasksOf(data, subject.id) : [];
+            const supervisor = isCharacterScope ? "" : supervisorName(subject.id);
             return (
               <button
                 type="button"
                 key={subject.id}
-                className={`study-card ${isCharacterOnly ? "character" : ""}`}
+                className="study-card"
                 onClick={() => nav(`/study/${subject.id}`)}
               >
                 <span className="study-card-head">
                   <b>{subject.name}</b>
-                  {isCharacterOnly && <span className="study-badge">仅角色</span>}
+                  {supervisor ? <span className="study-badge accent">{supervisor}监督</span> : null}
+                  <ChevronRight size={15} style={{ marginLeft: "auto", opacity: 0.4 }} />
                 </span>
-                <span className="study-card-hint">{subject.hint}</span>
-                {!isCharacterOnly && (
-                  <span className="study-card-foot">
-                    <strong>
-                      {tasks.filter((task) => task.done).length}/{tasks.length || 0}
-                    </strong>
-                    今日任务
-                  </span>
+                {isCharacterScope ? null : (
+                  <>
+                    <span className="study-card-hint">{subject.hint}</span>
+                    <span className="study-card-foot">
+                      <strong>
+                        {tasks.filter((task) => task.done).length}/{tasks.length || 0}
+                      </strong>
+                      今日任务
+                    </span>
+                  </>
                 )}
               </button>
             );
           })}
         </div>
 
-        <p className="study-note">
-          当前是<b>框架版</b>：科目分区、任务清单、监督员、角色学习材料位都已经留好，
-          具体内容和提示词注入还没接（按你的要求先不注入）。今天日期基准：{today}。
-        </p>
+        <h3 className="study-section-title">角色之间</h3>
+        {recentInteractions.length === 0 ? (
+          <p className="study-material-empty">角色会互相出题、互相答题批改，往来会记在这里。</p>
+        ) : (
+          <div className="study-materials">
+            {recentInteractions.map((item) => (
+              <div className="study-material" key={item.id}>
+                <span>
+                  <b>
+                    {item.from} → {item.to}
+                  </b>
+                  <small>
+                    {subjectName(item.subjectId)} · {item.title}
+                  </small>
+                </span>
+              </div>
+            ))}
+          </div>
+        )}
       </main>
     </div>
   );
