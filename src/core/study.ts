@@ -9,7 +9,7 @@ import { getSetting, setSetting } from "./db";
 
 export type StudySubjectId = "chinese" | "math" | "english" | "geography" | "physics" | "chemistry" | "biology";
 
-/** both = 你学、角色监督；character = 只有角色自己在学，你不需要管 */
+/** both = 你学、角色监督；character = 主要角色在学，你也能看 */
 export type StudyScope = "both" | "character";
 
 export interface StudySubjectMeta {
@@ -27,9 +27,9 @@ export const STUDY_SUBJECTS: StudySubjectMeta[] = [
   { id: "math", name: "数学", scope: "both", group: "core", hint: "刷题 · 错题本" },
   { id: "english", name: "英语", scope: "both", group: "core", hint: "单词 · 听力 · 语法" },
   { id: "geography", name: "地理", scope: "both", group: "minor", hint: "地图 · 区域" },
-  { id: "physics", name: "物理", scope: "character", group: "minor", hint: "只有角色在学" },
-  { id: "chemistry", name: "化学", scope: "character", group: "minor", hint: "只有角色在学" },
-  { id: "biology", name: "生物", scope: "character", group: "minor", hint: "只有角色在学" }
+  { id: "physics", name: "物理", scope: "character", group: "minor", hint: "受力 · 电路 · 公式" },
+  { id: "chemistry", name: "化学", scope: "character", group: "minor", hint: "方程式 · 反应 · 实验" },
+  { id: "biology", name: "生物", scope: "character", group: "minor", hint: "细胞 · 遗传 · 生态" }
 ];
 
 export const findStudySubject = (id?: string) => STUDY_SUBJECTS.find((item) => item.id === id);
@@ -46,13 +46,47 @@ export interface StudyTask {
   createdAt: number;
 }
 
-/** 角色自己学出来的材料：卷子手写图、笔记截图等 */
+/** 角色学习材料的类别：做过的卷子 / 学习痕迹 / 错题本 */
+export type StudyMaterialKind = "paper" | "trace" | "mistake";
+
+/** 类别清单：页面按这个顺序分组展示 */
+export const STUDY_MATERIAL_KINDS: { id: StudyMaterialKind; name: string; empty: string }[] = [
+  { id: "paper", name: "做过的卷子", empty: "角色做完的卷子会放在这里。" },
+  { id: "trace", name: "学习痕迹", empty: "笔记、草稿、打卡会出现在这里。" },
+  { id: "mistake", name: "错题本", empty: "错过的题会整理在这里。" }
+];
+
+/** 角色自己学出来的材料：卷子图、笔记截图、错题整理等 */
 export interface StudyMaterial {
   id: string;
   subjectId: StudySubjectId;
+  /** 材料类别，缺省按「学习痕迹」处理 */
+  kind?: StudyMaterialKind;
   title: string;
   note?: string;
   imageUrl?: string;
+  createdAt: number;
+}
+
+/** 取某科的角色往来记录 */
+export const interactionsOf = (data: StudyData | null, subjectId: StudySubjectId) =>
+  (data?.interactions ?? []).filter((item) => item.subjectId === subjectId);
+
+/** 取某科某类材料 */
+export const materialsOf = (data: StudyData | null, subjectId: StudySubjectId, kind: StudyMaterialKind) =>
+  (data?.materials ?? []).filter((item) => item.subjectId === subjectId && (item.kind ?? "trace") === kind);
+
+/** 角色之间的题目往来：谁给谁出题、谁答了、谁批的 */
+export type StudyInteractionKind = "question" | "answer" | "review";
+
+export interface StudyInteraction {
+  id: string;
+  subjectId: StudySubjectId;
+  kind: StudyInteractionKind;
+  fromCharacterId: string;
+  toCharacterId: string;
+  title: string;
+  note?: string;
   createdAt: number;
 }
 
@@ -61,10 +95,12 @@ export interface StudyData {
   /** 每科指定哪个角色来监督：subjectId -> characterId */
   supervisors: Partial<Record<StudySubjectId, string>>;
   materials: StudyMaterial[];
+  /** 角色互相出题 / 答题 / 批改的记录 */
+  interactions: StudyInteraction[];
 }
 
 const STORE_KEY = "study";
-const emptyStudy = (): StudyData => ({ tasks: [], supervisors: {}, materials: [] });
+const emptyStudy = (): StudyData => ({ tasks: [], supervisors: {}, materials: [], interactions: [] });
 
 let cache: StudyData = emptyStudy();
 
@@ -75,7 +111,8 @@ export async function loadStudy(): Promise<StudyData> {
   cache = {
     tasks: Array.isArray(stored?.tasks) ? stored.tasks : [],
     supervisors: stored?.supervisors && typeof stored.supervisors === "object" ? stored.supervisors : {},
-    materials: Array.isArray(stored?.materials) ? stored.materials : []
+    materials: Array.isArray(stored?.materials) ? stored.materials : [],
+    interactions: Array.isArray(stored?.interactions) ? stored.interactions : []
   };
   return cache;
 }
