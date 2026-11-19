@@ -299,3 +299,2463 @@
     display: none;
   }
 }
+
+/* ---------- 底栏兜底：保证主页底部 App 栏在任何布局分支下都能显示 ---------- */
+.cha-home .desktop-footer-stack .cha-dock {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  position: fixed !important;
+  top: auto !important;
+  left: calc(14px + env(safe-area-inset-left, 0px)) !important;
+  right: calc(14px + env(safe-area-inset-right, 0px)) !important;
+  bottom: calc(10px + env(safe-area-inset-bottom, 0px)) !important;
+  width: auto !important;
+  height: 84px !important;
+  min-height: 84px !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  transform: none !important;
+  z-index: 24 !important;
+}
+/* 小手机 · 夜间模式兼容层（自动生成，覆盖此前未适配深色的界面） */
+html[data-chacha-theme=dark] .onboard section>p{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .onboard label:not(.check){
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .onboard select option{
+  color:#e7e5ec!important;
+}
+html[data-chacha-theme=dark] .character-form input,
+html[data-chacha-theme=dark] .character-form textarea,
+html[data-chacha-theme=dark] .character-form select{
+  background:#111116!important;
+}
+html[data-chacha-theme=dark] .character-form select option{
+  color:#e7e5ec!important;
+}
+html[data-chacha-theme=dark] .delete-confirm>svg{
+  background:#111116!important;
+}
+html[data-chacha-theme=dark] .delete-confirm p{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .delete-confirm input{
+  background:#111116!important;
+}
+html[data-chacha-theme=dark] .chat-welcome{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .chat-welcome>span{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .notice-list p{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .secret-input button{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .key-notice{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .thinking{
+  background:#111116!important;
+}
+html[data-chacha-theme=dark] .generation-error>svg{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .generation-error p{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .multi-toolbar{
+  background:#111116!important;
+}
+html[data-chacha-theme=dark] .edit-message textarea{
+  background:#111116!important;
+}
+html[data-chacha-theme=dark] .compact-confirm>svg{
+  background:#111116!important;
+}
+html[data-chacha-theme=dark] .compact-confirm p{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .forward-preview{
+  background:#111116!important;
+}
+html[data-chacha-theme=dark] .forward-preview small{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .forward-targets small{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .forward-targets>p{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .toast{
+  background:#111116!important;
+}
+html[data-chacha-theme=dark] .tester-scope select{
+  background:#111116!important;
+}
+html[data-chacha-theme=dark] .tester-scope option{
+  color:#e7e5ec!important;
+}
+html[data-chacha-theme=dark] .match-results small{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .match-results>p{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .inside-empty{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .mini-book{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .comment-composer{
+  background:#111116!important;
+}
+html[data-chacha-theme=dark] .comment-composer input{
+  background:#111116!important;
+}
+html[data-chacha-theme=dark] .contact-main small{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .group-form label em{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .group-form label input{
+  background:#111116!important;
+}
+html[data-chacha-theme=dark] .book-picks small{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .book-picks>p{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .danger-link{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .chat-welcome>svg{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .review-list textarea{
+  background:#111116!important;
+}
+html[data-chacha-theme=dark] .review-fields select{
+  background:#111116!important;
+}
+html[data-chacha-theme=dark] .mini-lock{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .review-list small{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .candidate-delete{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .form-hint{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .chat-settings-menu>button>svg{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .chat-settings-menu small{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .backup-preview>p{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .backup-preview small{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .factory-confirm label{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .factory-confirm input{
+  background:#111116!important;
+}
+html[data-chacha-theme=dark] .field span{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .swatch-row button{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .appearance-notice{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .conversation-list>button{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .conversation-list h3{
+  color:#e7e5ec!important;
+}
+html[data-chacha-theme=dark] .onboard{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .disclaimer section{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .notice-list article{
+  background:#191a20!important;
+  border-color:#ffffff1f!important;
+}
+html[data-chacha-theme=dark] .notice-list p,
+html[data-chacha-theme=dark] .disclaimer>section>p{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .chat-welcome{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .chat-welcome h3{
+  color:#e7e5ec!important;
+}
+html[data-chacha-theme=dark] .chat-welcome span{
+  color:#a9a6b2!important;
+  background:#191a20!important;
+  border-color:#ffffff1f!important;
+}
+html[data-chacha-theme=dark] .thinking{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .generation-error{
+  color:#a9a6b2!important;
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .generation-error>svg{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .generation-error p{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .generation-error button{
+  color:#a9a6b2!important;
+  background:#191a20!important;
+  border-color:#ffffff1f!important;
+}
+html[data-chacha-theme=dark] .multi-toolbar{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .multi-toolbar button{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .edit-message textarea{
+  color:#e7e5ec!important;
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .compact-confirm>svg{
+  color:#a9a6b2!important;
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .compact-confirm p{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .forward-preview{
+  background:#191a20!important;
+  border-color:#ffffff1f!important;
+}
+html[data-chacha-theme=dark] .forward-preview small{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .forward-preview p{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .forward-targets>button{
+  color:#e7e5ec!important;
+}
+html[data-chacha-theme=dark] .toast{
+  background:#111116!important;
+}
+html[data-chacha-theme=dark] .contact-list{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .contact-list article{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .group-form,
+html[data-chacha-theme=dark] .picker-list,
+html[data-chacha-theme=dark] .book-picks{
+  color:#e7e5ec!important;
+}
+html[data-chacha-theme=dark] .sticker-picker-tabs button{
+  color:#a9a6b2!important;
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .sticker-picker-grid button{
+  color:#a9a6b2!important;
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .sticker-message small{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .image-message{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .image-message small{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .voice-message{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .voice-message small{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .call-event-message{
+  background:#191a20!important;
+  border-color:#ffffff1f!important;
+}
+html[data-chacha-theme=dark] .photo-compose img{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .photo-clear{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .camera-choice button{
+  color:#a9a6b2!important;
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .media-description{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .media-description textarea{
+  color:#e7e5ec!important;
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .media-error{
+  color:#a9a6b2!important;
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .voice-recorder>div{
+  color:#a9a6b2!important;
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .transfer-compose label{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .transfer-compose label>div span{
+  color:#e7e5ec!important;
+}
+html[data-chacha-theme=dark] .transfer-compose label>div input{
+  color:#e7e5ec!important;
+}
+html[data-chacha-theme=dark] .transfer-compose label>input{
+  color:#e7e5ec!important;
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .transfer-compose p{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .call-overlay{
+  color:#e7e5ec!important;
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .call-backdrop p{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .call-transcript>div{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .call-transcript b{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .call-thinking{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .call-error{
+  color:#a9a6b2!important;
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .call-composer{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .call-composer textarea{
+  color:#e7e5ec!important;
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .self-video{
+  background:#111116!important;
+}
+html[data-chacha-theme=dark] .mini-switch span{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .mini-switch span:after{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .desktop-edit-done{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .feed-compose-grid>div{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .feed-compose-image-actions button{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .feed-image-preview>button{
+  background:#111116!important;
+}
+html[data-chacha-theme=dark] .settings-toast{
+  color:#a9a6b2!important;
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .feed-reference-preview{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .feed-reference-preview button{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .moments-cover{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .moments-list{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .moments-delete{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .moments-action-toggle{
+  color:#a9a6b2!important;
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .moments-pending{
+  color:#a9a6b2!important;
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .moments-feedback{
+  color:#e7e5ec!important;
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .moments-cover-actions button{
+  color:#a9a6b2!important;
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .moments-cover-editor label{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .moments-cover-editor label input{
+  color:#e7e5ec!important;
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .insta-avatar-editor{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .insta-detail-images img{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .matcha-liquid:before{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .matcha-liquid:before{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .call-transcript>div{
+  background:#111116!important;
+}
+html[data-chacha-theme=dark] .call-error{
+  background:#111116!important;
+}
+html[data-chacha-theme=dark] .call-composer{
+  background:#111116!important;
+}
+html[data-chacha-theme=dark] .call-composer textarea{
+  background:#111116!important;
+}
+html[data-chacha-theme=dark] .call-composer textarea::placeholder{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .call-composer button:disabled{
+  color:#a9a6b2!important;
+  background:#111116!important;
+}
+html[data-chacha-theme=dark] .self-video{
+  background:#111116!important;
+}
+html[data-chacha-theme=dark] .call-overlay.video{
+  background:#111116!important;
+}
+html[data-chacha-theme=dark] .character-avatar-button{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .character-avatar-button>span{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .relationship-stage{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .relationship-stage>span{
+  color:#a9a6b2!important;
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .relationship-stage b{
+  color:#e7e5ec!important;
+}
+html[data-chacha-theme=dark] .relationship-stage p{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .relationship-hint{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .relationship-events{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .relationship-events h3{
+  color:#e7e5ec!important;
+}
+html[data-chacha-theme=dark] .relationship-events li{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .relationship-events>p{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .relationship-readonly-metrics article{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .relationship-readonly-metrics article b{
+  color:#e7e5ec!important;
+}
+html[data-chacha-theme=dark] .relationship-readonly-metrics article small{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .relationship-readonly-metrics strong{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .relationship-readonly-metrics article>em{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .relationship-meta>span{
+  color:#a9a6b2!important;
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .relationship-meta b{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .wallet-card-head small{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .wallet-card-head h2{
+  color:#e7e5ec!important;
+}
+html[data-chacha-theme=dark] .wallet-card-head p{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .wallet-card-head>span{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .character-profile-actions button{
+  color:#e7e5ec!important;
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .character-function-group>button{
+  color:#e7e5ec!important;
+}
+html[data-chacha-theme=dark] .character-function-group>button>svg:first-child{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .character-function-group p{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .character-form{
+  color:#e7e5ec!important;
+}
+html[data-chacha-theme=dark] .character-form label{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .font-limit-note{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .font-library-head b{
+  color:#e7e5ec!important;
+}
+html[data-chacha-theme=dark] .font-library{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .font-library article{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .font-library-main>span{
+  color:#a9a6b2!important;
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .font-library-main b{
+  color:#e7e5ec!important;
+}
+html[data-chacha-theme=dark] .font-library-main small{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .font-delete{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .lore-search{
+  background:#111116!important;
+}
+html[data-chacha-theme=dark] .lore-search svg{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .lore-batch-tools small{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .lore-import-preview>article small{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .lore-mount-targets>small{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .lore-library-manage select,
+html[data-chacha-theme=dark] .lore-library-manage button{
+  color:#a9a6b2!important;
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .lore-library-count{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .lore-shelf>header h2{
+  color:#e7e5ec!important;
+}
+html[data-chacha-theme=dark] .lore-shelf>header span{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .lore-tester-library{
+  color:#e7e5ec!important;
+}
+html[data-chacha-theme=dark] .lore-tester-library>p{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .lore-tester-library .tester-scope select{
+  color:#a9a6b2!important;
+  background:#191a20!important;
+  border-color:#ffffff1f!important;
+}
+html[data-chacha-theme=dark] .lore-tester-library .match-results article{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .lore-tester-library .match-results b{
+  color:#e7e5ec!important;
+}
+html[data-chacha-theme=dark] .lore-detail-copy>small{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .lore-detail-copy h1{
+  color:#e7e5ec!important;
+}
+html[data-chacha-theme=dark] .lore-detail-copy p{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .memory-sheet-head p{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .font-size-slider small,
+html[data-chacha-theme=dark] .font-size-slider strong{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .meet-mode{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .meet-mode button{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .meet-picker label{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .meet-thinking{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .meet-error{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .meet-composer>div:not(.meet-suggestions){
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .meet-composer>div>button:disabled{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .meet-ended{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .meet-ended button,
+html[data-chacha-theme=dark] .meet-missing button{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .meet-missing svg{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .meet-message-card{
+  color:#e7e5ec!important;
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .meet-message-card span{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .meet-message-card small{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .meet-message-card.invitation{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .meet-invite-actions button,
+html[data-chacha-theme=dark] .meet-open-record{
+  color:#a9a6b2!important;
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .meet-invite-actions button:last-child{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .thread-thinking{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .thread-thinking>span{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .meet-end-danger{
+  color:#a9a6b2!important;
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .thread-regenerating{
+  color:#a9a6b2!important;
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .thread-action-sheet>header{
+  color:#e7e5ec!important;
+}
+html[data-chacha-theme=dark] .thread-action-sheet>header button{
+  color:#a9a6b2!important;
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .thread-action-sheet>button{
+  color:#e7e5ec!important;
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .thread-action-sheet>button svg{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .thread-action-sheet>button:active{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .thread-delete-sheet>span{
+  color:#a9a6b2!important;
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .thread-delete-sheet h2{
+  color:#e7e5ec!important;
+}
+html[data-chacha-theme=dark] .thread-delete-sheet p{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .thread-delete-sheet>div button{
+  color:#a9a6b2!important;
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .user-persona-save-top{
+  color:#a9a6b2!important;
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .user-persona-notice{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .call-thinking.speech{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .speech-provider-badges span{
+  color:#a9a6b2!important;
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .speech-provider-badges span.default{
+  color:#a9a6b2!important;
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .speech-connect-group .secret-input button{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .persona-inline-decoration i{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .persona-inline-decoration i:nth-child(2){
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .persona-inline-notice{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .image-provider-badges span{
+  color:#a9a6b2!important;
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .image-provider-badges span.current{
+  color:#a9a6b2!important;
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .mall-alert{
+  color:#a9a6b2!important;
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .mall-alert.error{
+  color:#a9a6b2!important;
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .mall-empty>span{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .mall-empty p{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .restaurant-menu article>div p{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .restaurant-menu article>button{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .delete-link{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .mall-cart article>div small{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .mall-cart article>span button{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .mall-cart footer span{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .recipient-tabs{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .recipient-tabs button{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .recipient-list button{
+  color:#a9a6b2!important;
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .mall-checkout>p{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .balance-editor label{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .transfer-receive{
+  background:#111116!important;
+}
+html[data-chacha-theme=dark] .order-detail-total span{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .phone-check-empty h3{
+  color:#e7e5ec!important;
+}
+html[data-chacha-theme=dark] .phone-check-empty button{
+  background:#111116!important;
+}
+html[data-chacha-theme=dark] .phone-primary{
+  background:#111116!important;
+}
+html[data-chacha-theme=dark] .phone-error{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .phone-discovered-modal>p{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .phone-discovered-modal>svg{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .talk-main-head,
+html[data-chacha-theme=dark] .talk-room-head{
+  color:#e7e5ec!important;
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .talk-main-head>button,
+html[data-chacha-theme=dark] .talk-room-head>button{
+  color:#e7e5ec!important;
+}
+html[data-chacha-theme=dark] .talk-tabbar button{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .talk-chat-thread article>span{
+  color:#a9a6b2!important;
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .talk-chat-thread article>div small{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .talk-chat-thread article>div em{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .talk-composer{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .talk-composer span{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .reminder-summary b{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .reminder-list{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .reminder-list article>button{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .reminder-list article p{
+  color:#e7e5ec!important;
+}
+html[data-chacha-theme=dark] .reminder-list article small{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .role-ios6-device>.phone-init-screen{
+  color:#e7e5ec!important;
+}
+html[data-chacha-theme=dark] .role-ios6-locked-alert{
+  color:#e7e5ec!important;
+}
+html[data-chacha-theme=dark] .role-ios6-locked-alert>small{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .role-ios6-locked-alert p{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .mall-buy-button{
+  background:#111116!important;
+}
+html[data-chacha-theme=dark] .talk-tab-content{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .talk-chat-list>button,
+html[data-chacha-theme=dark] .talk-contact-list>button{
+  color:#e7e5ec!important;
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .talk-chat-list p,
+html[data-chacha-theme=dark] .talk-contact-list p{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .talk-contact-list{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .talk-discover{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .talk-discovery-feed article,
+html[data-chacha-theme=dark] .talk-service-grid article{
+  color:#e7e5ec!important;
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .talk-discovery-feed small,
+html[data-chacha-theme=dark] .talk-service-grid small{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .talk-discovery-feed p,
+html[data-chacha-theme=dark] .talk-service-grid p{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .talk-discover>h3{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .talk-service-grid svg{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .talk-profile{
+  color:#e7e5ec!important;
+}
+html[data-chacha-theme=dark] .talk-profile-card>b{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .talk-profile-card>small{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .talk-profile-card>p{
+  color:#a9a6b2!important;
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .preview-message small{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .chat-settings-blocked{
+  background:#111116!important;
+}
+html[data-chacha-theme=dark] .chat-settings-blocked button{
+  color:#e7e5ec!important;
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .chat-settings-row-icon{
+  background:#111116!important;
+}
+html[data-chacha-theme=dark] .chat-settings-message{
+  background:#111116!important;
+}
+html[data-chacha-theme=dark] .chat-import-modal>.close{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .chat-import-modal>svg,
+html[data-chacha-theme=dark] .chat-danger-modal>svg{
+  color:#e7e5ec!important;
+}
+html[data-chacha-theme=dark] .chat-import-modal>p,
+html[data-chacha-theme=dark] .chat-danger-modal>p{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .chat-import-stats span{
+  color:#a9a6b2!important;
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .chat-import-stats b{
+  color:#e7e5ec!important;
+}
+html[data-chacha-theme=dark] .chat-import-modal>label small{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .contact-section>h3{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .contact-section>h3 span{
+  background:#111116!important;
+}
+html[data-chacha-theme=dark] .blocked-chat-banner{
+  background:#111116!important;
+}
+html[data-chacha-theme=dark] .blocked-chat-banner button{
+  color:#e7e5ec!important;
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .chat-settings-row-icon{
+  background:#111116!important;
+}
+html[data-chacha-theme=dark] .forum-character-picker>p{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .forum-character-picker>div>button{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .forum-character-picker small{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .forum-toast{
+  background:#111116!important;
+}
+html[data-chacha-theme=dark] .forum-directory-page{
+  color:#e7e5ec!important;
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .forum-directory-page>header>button{
+  color:#a9a6b2!important;
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .forum-directory-page>header p{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .forum-directory-search{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .forum-directory-search>svg{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .forum-directory-search input{
+  color:#e7e5ec!important;
+}
+html[data-chacha-theme=dark] .forum-directory-search button{
+  color:#a9a6b2!important;
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .forum-directory-empty{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .forum-directory-empty h3{
+  color:#e7e5ec!important;
+}
+html[data-chacha-theme=dark] .forum-directory-page.forum-directory-feed{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .forum-directory-page>.forum-directory-feed-head>button{
+  color:#e7e5ec!important;
+}
+html[data-chacha-theme=dark] .forum-directory-logo{
+  color:#e7e5ec!important;
+}
+html[data-chacha-theme=dark] .forum-directory-search.feed-search{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .forum-directory-page>main.forum-directory-feed-list{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .forum-directory-feed-row{
+  color:#e7e5ec!important;
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .forum-directory-feed-row:hover{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .forum-directory-avatar-wrap>i{
+  background:#111116!important;
+}
+html[data-chacha-theme=dark] .forum-directory-feed-row header>svg{
+  color:#e7e5ec!important;
+}
+html[data-chacha-theme=dark] .forum-directory-feed-row p{
+  color:#e7e5ec!important;
+}
+html[data-chacha-theme=dark] .forum-directory-feed-row footer span{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .forum-directory-floating-create{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .forum-directory-feed-row header>svg{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .forum-directory-count{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .forum-directory-count b{
+  color:#e7e5ec!important;
+}
+html[data-chacha-theme=dark] .forum-x-search{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .forum-x-search>svg{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .forum-x-search button{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .forum-x-feed,
+html[data-chacha-theme=dark] .forum-x-thread{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .forum-x-post{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .forum-x-post:hover{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .forum-x-post header>span,
+html[data-chacha-theme=dark] .forum-x-replies header>span{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .forum-x-post header>svg,
+html[data-chacha-theme=dark] .forum-x-replies header>svg{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .forum-x-post p{
+  color:#e7e5ec!important;
+}
+html[data-chacha-theme=dark] .forum-x-tags span{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .forum-x-row-actions{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .forum-x-author span{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .forum-x-author>svg{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .forum-x-thread-post>time{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .forum-x-thread-post>time b{
+  color:#e7e5ec!important;
+}
+html[data-chacha-theme=dark] .forum-x-detail-counts{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .forum-x-detail-counts b{
+  color:#e7e5ec!important;
+}
+html[data-chacha-theme=dark] .forum-x-detail-actions button{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .forum-x-reply-box>button{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .forum-x-reply-box>.reply{
+  background:#111116!important;
+}
+html[data-chacha-theme=dark] .forum-x-empty{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .forum-x-empty b{
+  color:#e7e5ec!important;
+}
+html[data-chacha-theme=dark] .forum-editor-page{
+  color:#e7e5ec!important;
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .forum-editor-page>header>button{
+  color:#e7e5ec!important;
+}
+html[data-chacha-theme=dark] .forum-editor-page>header>button:hover{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .forum-editor-page>header small{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .forum-editor-preview{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .forum-editor-preview p{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .forum-editor-section>h3{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .forum-editor-group{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .forum-editor-group input:not([type=checkbox]):not([type=color]),
+html[data-chacha-theme=dark] .forum-editor-group textarea{
+  color:#e7e5ec!important;
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .forum-editor-group input:focus,
+html[data-chacha-theme=dark] .forum-editor-group textarea:focus{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .forum-upload-row small{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .forum-upload-row>svg{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .forum-editor-clear,
+html[data-chacha-theme=dark] .forum-editor-add,
+html[data-chacha-theme=dark] .forum-editor-generate{
+  color:#e7e5ec!important;
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .forum-editor-clear{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .forum-editor-generate{
+  background:#111116!important;
+}
+html[data-chacha-theme=dark] .forum-editor-toggle i{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .forum-editor-toggle i:after{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .forum-quota-row small{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .forum-quota-row>label{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .forum-npc-ai>button{
+  background:#111116!important;
+}
+html[data-chacha-theme=dark] .forum-activity-grid>label{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .forum-activity-status>svg{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .forum-activity-status small{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .forum-editor-message{
+  background:#111116!important;
+}
+html[data-chacha-theme=dark] .forum-delete-confirm>svg{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .forum-delete-confirm p{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .forum-delete-confirm .cancel-button{
+  color:#e7e5ec!important;
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .forum-editor-loading{
+  color:#a9a6b2!important;
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .forum-x-head-actions>button{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .forum-x-head-actions>button:hover{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .forum-x-profile{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .forum-x-profile .profile-row>button{
+  color:#e7e5ec!important;
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .forum-x-profile>p{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .forum-x-profile>small{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .forum-directory-icon.image{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .forum-editor-preview>.preview-head{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .forum-editor-preview>.preview-head small{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .forum-editor-directory-preview{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .forum-editor-directory-preview small{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .forum-lore-select>summary{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .forum-lore-select>summary>span{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .forum-lore-select>summary>svg{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .forum-lore-select>div{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .forum-lore-select>div>button{
+  color:#e7e5ec!important;
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .forum-lore-select>div>button>svg{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .forum-lore-select>div>button small{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .forum-lore-select>div>p{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .forum-community-nav>button.create{
+  color:#a9a6b2!important;
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .forum-dm-page{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .forum-dm-search{
+  color:#a9a6b2!important;
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .forum-dm-search button{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .forum-dm-list>button{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .forum-dm-list>button:hover{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .forum-dm-list>button p{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .forum-dm-list>button>i{
+  background:#111116!important;
+}
+html[data-chacha-theme=dark] .forum-dm-thread-head>button{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .forum-dm-thread-head small{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .forum-dm-thread{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .forum-dm-typing{
+  color:#a9a6b2!important;
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .forum-dm-empty{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .forum-dm-empty b{
+  color:#e7e5ec!important;
+}
+html[data-chacha-theme=dark] .forum-dm-composer{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .forum-dm-composer textarea{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .forum-dm-composer button{
+  background:#111116!important;
+}
+html[data-chacha-theme=dark] .forum-user-profile{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .forum-user-identity>button{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .forum-user-identity>b{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .forum-user-identity>small{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .forum-user-identity>div{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .forum-user-identity>div b{
+  color:#e7e5ec!important;
+}
+html[data-chacha-theme=dark] .forum-user-tabs button{
+  color:#a9a6b2!important;
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .forum-user-posts>button{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .forum-user-posts>button:hover{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .forum-user-posts>button p{
+  color:#e7e5ec!important;
+}
+html[data-chacha-theme=dark] .forum-user-posts>button small{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .forum-profile-editor>header button:last-child{
+  color:#e7e5ec!important;
+}
+html[data-chacha-theme=dark] .forum-profile-editor>label{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .forum-profile-editor input,
+html[data-chacha-theme=dark] .forum-profile-editor textarea{
+  color:#e7e5ec!important;
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .forum-profile-editor input:focus,
+html[data-chacha-theme=dark] .forum-profile-editor textarea:focus{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .forum-profile-editor .handle-input{
+  color:#a9a6b2!important;
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .forum-liked-page{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .forum-liked-title{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .forum-liked-title>svg{
+  color:#e7e5ec!important;
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .forum-liked-title p{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .forum-liked-group{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .forum-liked-group>h2{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .forum-liked-group>button{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .forum-liked-group>button:hover{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .forum-liked-group header span{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .forum-liked-group p{
+  color:#e7e5ec!important;
+}
+html[data-chacha-theme=dark] .forum-liked-group small{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .forum-liked-group footer{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .forum-liked-group footer svg:first-child{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .forum-profile-editor{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .forum-profile-editor>header{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .forum-profile-editor>header button{
+  color:#e7e5ec!important;
+}
+html[data-chacha-theme=dark] .forum-profile-editor-card{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .forum-profile-editor-card input,
+html[data-chacha-theme=dark] .forum-profile-editor-card textarea{
+  color:#e7e5ec!important;
+}
+html[data-chacha-theme=dark] .forum-profile-editor-card .handle-input{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .forum-profile-editor-card>.profile-count-editor>label{
+  color:#e7e5ec!important;
+}
+html[data-chacha-theme=dark] .forum-profile-editor-card>.profile-count-editor input{
+  color:#e7e5ec!important;
+}
+html[data-chacha-theme=dark] .forum-chat-interop-toggle small{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .forum-chat-interop-toggle>i{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .forum-chat-interop-toggle>i:after{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .forum-chat-interop-toggle input:checked+i{
+  background:#111116!important;
+}
+html[data-chacha-theme=dark] .forum-chat-interop>div>p{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .forum-chat-interop>div>button{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .forum-chat-interop>div>button small{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .forum-compose-page{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .forum-compose-page>header button{
+  color:#e7e5ec!important;
+}
+html[data-chacha-theme=dark] .forum-compose-page>header .publish{
+  background:#111116!important;
+}
+html[data-chacha-theme=dark] .forum-compose-page>header .publish:disabled{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .forum-compose-page textarea{
+  color:#e7e5ec!important;
+}
+html[data-chacha-theme=dark] .forum-compose-page textarea::placeholder{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .forum-compose-media figure{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .forum-compose-media figure>.description{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .forum-compose-description input{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .forum-compose-description button{
+  color:#a9a6b2!important;
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .forum-compose-page>footer{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .forum-compose-page>footer>nav{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .forum-x-detail-actions button span{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .forum-share-modal{
+  color:#e7e5ec!important;
+}
+html[data-chacha-theme=dark] .forum-share-modal>header small{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .forum-share-modal>header>button{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .forum-share-modal>article{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .forum-share-modal>article p{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .forum-share-modal>section>button{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .forum-share-modal>section>button small{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .forum-share-modal>section>button>svg{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .forum-square-scroll{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .forum-auto-comments{
+  color:#a9a6b2!important;
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .forum-post-more{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .forum-post-more:hover{
+  color:#e7e5ec!important;
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .forum-reply-target{
+  color:#a9a6b2!important;
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .forum-reply-target b{
+  color:#e7e5ec!important;
+}
+html[data-chacha-theme=dark] .forum-reply-target button{
+  color:#a9a6b2!important;
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .forum-replying-to{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .forum-continue-comments{
+  color:#e7e5ec!important;
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .forum-continue-comments:hover{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .forum-continue-comments svg{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .forum-post-menu{
+  color:#e7e5ec!important;
+}
+html[data-chacha-theme=dark] .forum-post-menu p{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .forum-post-menu>button{
+  color:#e7e5ec!important;
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .forum-profile-banner-editor>b{
+  color:#e7e5ec!important;
+}
+html[data-chacha-theme=dark] .forum-profile-banner-editor>div span{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .forum-profile-banner-editor nav label,
+html[data-chacha-theme=dark] .forum-profile-banner-editor nav button{
+  color:#e7e5ec!important;
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .forum-profile-banner-editor nav button{
+  color:#e7e5ec!important;
+}
+html[data-chacha-theme=dark] .provider-preset-empty{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .provider-preset-note{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .image-prompt-presets label>small{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .speech-preset-note{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .message-flow-done{
+  background:#111116!important;
+}
+html[data-chacha-theme=dark] .group-avatar-upload>span{
+  color:#a9a6b2!important;
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .group-avatar-upload>em{
+  color:#a9a6b2!important;
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .strategy-bars i{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .chat-sticker-mount-head small{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .group-tool-form>label{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .group-tool-form input,
+html[data-chacha-theme=dark] .group-tool-form select{
+  color:#e7e5ec!important;
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .poll-option-editor label>span{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .poll-option-editor button{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .red-packet-message header>span{
+  color:#a9a6b2!important;
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .red-packet-message>div{
+  color:#e7e5ec!important;
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .red-packet-message>div i{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .red-packet-message footer{
+  color:#a9a6b2!important;
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .director-label{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .group-npc-section>header>button{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .group-npc-subtitle{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .group-npc-error{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .group-npc-ai{
+  color:#a9a6b2!important;
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .group-npc-save{
+  background:#111116!important;
+}
+html[data-chacha-theme=dark] .memory-filter-reset{
+  color:#a9a6b2!important;
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .memory-vitality-card>div>small{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .memory-vitality-card>p{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .memory-card-actions>button{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .memory-card-meta{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .memory-secondary-view>header p{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .memory-vitality-status>span{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .memory-vitality-status>em{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .memory-setting-toggle i{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .memory-setting-toggle i:after{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .forum-profile-generating{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .meet-new-intro small{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .meet-opening-status{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .meet-new-empty{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .phone-contacts-app,
+html[data-chacha-theme=dark] .phone-maps-app,
+html[data-chacha-theme=dark] .phone-mail-app{
+  color:#e7e5ec!important;
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .ecosystem-app-head>button{
+  color:#e7e5ec!important;
+}
+html[data-chacha-theme=dark] .ecosystem-app-head>span{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .ecosystem-search{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .ecosystem-search svg{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .ecosystem-contact-list>button,
+html[data-chacha-theme=dark] .talk-contact-list>button{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .ecosystem-contact-list p{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .ecosystem-contact-list small{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .ecosystem-contact-card>b{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .ecosystem-contact-card>small{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .ecosystem-contact-card>p{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .ecosystem-info-list{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .ecosystem-info-list small{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .talk-composer.editable input{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .talk-chat-thread article>div>i{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .phone-inline-retry,
+html[data-chacha-theme=dark] .mail-retry{
+  color:#a9a6b2!important;
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .phone-ecosystem-error{
+  color:#a9a6b2!important;
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .phone-send-confirm>svg{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .phone-send-confirm>small{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .phone-send-confirm blockquote{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .phone-send-confirm>div button{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .maps-hero>svg{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .maps-hero small{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .ecosystem-segment button{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .maps-list article{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .maps-list svg{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .maps-list p{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .maps-list small{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .mail-folders{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .mail-folders button{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .mail-list>button{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .mail-list>button>span{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .mail-list>button>p{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .mail-compose label{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .mail-compose input,
+html[data-chacha-theme=dark] .mail-compose select{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .mail-compose textarea{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .mail-compose main>small{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .mail-detail main>small,
+html[data-chacha-theme=dark] .mail-detail time{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .mail-detail main>em{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .mail-detail-actions button{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .simple-phone-grid article,
+html[data-chacha-theme=dark] .simple-phone-row,
+html[data-chacha-theme=dark] .simple-wallet-balance{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .simple-phone-grid article>svg{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .simple-phone-grid small,
+html[data-chacha-theme=dark] .simple-phone-row small{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .simple-phone-grid p,
+html[data-chacha-theme=dark] .simple-phone-row p{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .simple-phone-row>svg{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .phone-contacts-app,
+html[data-chacha-theme=dark] .phone-maps-app,
+html[data-chacha-theme=dark] .phone-mail-app{
+  background:#111116!important;
+}
+html[data-chacha-theme=dark] .ecosystem-app-head>button{
+  background:#111116!important;
+}
+html[data-chacha-theme=dark] .ecosystem-search,
+html[data-chacha-theme=dark] .ecosystem-contact-list>button,
+html[data-chacha-theme=dark] .ecosystem-contact-card>p,
+html[data-chacha-theme=dark] .ecosystem-info-list,
+html[data-chacha-theme=dark] .maps-list article,
+html[data-chacha-theme=dark] .mail-list>button,
+html[data-chacha-theme=dark] .mail-compose input,
+html[data-chacha-theme=dark] .mail-compose select,
+html[data-chacha-theme=dark] .mail-compose textarea,
+html[data-chacha-theme=dark] .mail-detail-actions button,
+html[data-chacha-theme=dark] .simple-phone-grid article,
+html[data-chacha-theme=dark] .simple-phone-row,
+html[data-chacha-theme=dark] .simple-wallet-balance{
+  background:#111116!important;
+}
+html[data-chacha-theme=dark] .mail-folders{
+  background:#111116!important;
+}
+html[data-chacha-theme=dark] .phone-send-confirm blockquote{
+  background:#111116!important;
+}
+html[data-chacha-theme=dark] .talk-composer.editable input{
+  background:#111116!important;
+}
+html[data-chacha-theme=dark] .phone-files-app,
+html[data-chacha-theme=dark] .phone-voice-app,
+html[data-chacha-theme=dark] .phone-reminders-app,
+html[data-chacha-theme=dark] .phone-system-app{
+  color:#e7e5ec!important;
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .utility-tabs{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .utility-tabs button{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .utility-list>button{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .utility-list>button>span{
+  color:#a9a6b2!important;
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .utility-list p{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .utility-detail>main>small{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .utility-detail pre{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .hidden-file-warning{
+  background:#111116!important;
+}
+html[data-chacha-theme=dark] .voice-list>button>span{
+  color:#a9a6b2!important;
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .memo-transcript{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .reminder-summary>div{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .reminder-summary b{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .reminder-summary small{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .reminder-list article{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .reminder-list article>button{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .reminder-list p{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .reminder-list small{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .system-account{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .system-account p{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .system-menu,
+html[data-chacha-theme=dark] .system-list{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .system-menu>button>svg:first-child{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .system-menu p{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .system-list article>span{
+  color:#a9a6b2!important;
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .system-list p{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .screen-total small{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .screen-total p{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .screen-bars{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .screen-bars small{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .screen-bars article>span{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .phone-files-app,
+html[data-chacha-theme=dark] .phone-voice-app,
+html[data-chacha-theme=dark] .phone-reminders-app,
+html[data-chacha-theme=dark] .phone-system-app{
+  background:#111116!important;
+}
+html[data-chacha-theme=dark] .utility-tabs{
+  background:#111116!important;
+}
+html[data-chacha-theme=dark] .spotlight-group{
+  color:#e7e5ec!important;
+}
+html[data-chacha-theme=dark] .spotlight-group h3{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .spotlight-group>button>span{
+  color:#a9a6b2!important;
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .spotlight-group small{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .spotlight-group p{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .spotlight-group mark{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .recent-close{
+  background:#111116!important;
+}
+html[data-chacha-theme=dark] .maps-list>button{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .maps-list>button svg{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .maps-list>button p{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .maps-list>button small{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .map-place-detail>svg{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .map-place-detail>b{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .map-place-detail>small{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .map-place-detail>p{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .map-place-detail>section{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .map-place-detail>p,
+html[data-chacha-theme=dark] .map-place-detail>section,
+html[data-chacha-theme=dark] .maps-list>button{
+  background:#111116!important;
+}
+html[data-chacha-theme=dark] .sticker-import-preview>p{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .sticker-import-preview details{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .inner-voice-dialog{
+  color:#e7e5ec!important;
+}
+html[data-chacha-theme=dark] .inner-voice-section h3{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .inner-voice-section h3:before{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .inner-voice-section p{
+  color:#e7e5ec!important;
+}
+html[data-chacha-theme=dark] .inner-voice-stale{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .capture-image-shell{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .capture-image-placeholder{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .music-avatar-button{
+  background:#111116!important;
+}
+html[data-chacha-theme=dark] .music-login-logo{
+  color:#e7e5ec!important;
+}
+html[data-chacha-theme=dark] .music-qr{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .music-playlist-scroll article>img,
+html[data-chacha-theme=dark] .music-playlist-scroll article>span{
+  background:#111116!important;
+}
+html[data-chacha-theme=dark] .music-search-box{
+  color:#e7e5ec!important;
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .music-tabs button{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .music-page-mini>span:first-child{
+  background:#111116!important;
+}
+html[data-chacha-theme=dark] .music-import-sheet>section{
+  background:#111116!important;
+}
+html[data-chacha-theme=dark] .music-toast{
+  background:#111116!important;
+}
+html[data-chacha-theme=dark] .music-invitation-actions button:last-child{
+  color:#e7e5ec!important;
+}
+html[data-chacha-theme=dark] .music-invite-empty button{
+  color:#e7e5ec!important;
+}
+html[data-chacha-theme=dark] .music-queue-sheet>section{
+  background:#111116!important;
+}
+html[data-chacha-theme=dark] .island-partner-switch small{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .island-path{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .island-couple-marker svg{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .island-map-hint{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .island-zone-close{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .island-entry-grid article,
+html[data-chacha-theme=dark] .island-add-photo{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .island-entry-grid small{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .island-add-photo{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .island-wish-list article{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .island-event-log p span{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .island-inventory-view>header>svg,
+html[data-chacha-theme=dark] .island-shop-view>header>svg{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .island-inventory-view header p,
+html[data-chacha-theme=dark] .island-shop-view header p{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .island-shop-view>header>b{
+  color:#a9a6b2!important;
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .island-settings-sheet .sheet-close{
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .island-settings-sheet p{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .couple-island-invitation-icon svg{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .music-library-playlists>button>span{
+  background:#111116!important;
+}
+html[data-chacha-theme=dark] .music-editor-cover>span{
+  background:#111116!important;
+}
+html[data-chacha-theme=dark] .music-sleep-sheet{
+  background:#111116!important;
+}
+html[data-chacha-theme=dark] .music-report-navigator small{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .music-report-empty{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .music-report-empty b{
+  color:#e7e5ec!important;
+}
+html[data-chacha-theme=dark] .music-report-title small{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .music-report-week-bars b{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .music-report-week-bars small{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .music-report-month-bars small{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .music-report-artists em{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .music-report-status{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .widget-image-tools-scroll>small{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .widget-image-tools-scroll>small.error{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .music-mood-avatar{
+  color:#e7e5ec!important;
+  background:#191a20!important;
+}
+html[data-chacha-theme=dark] .music-mood-tags span{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .music-mood-quotes blockquote b{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .music-mood-card footer button{
+  color:#a9a6b2!important;
+}
+html[data-chacha-theme=dark] .music-mood-empty svg{
+  color:#a9a6b2!important;
+}
+
+
+/* ---------- 夜间模式补漏：风格页/内页白底与深字统一转暗 ---------- */
+html[data-chacha-theme=dark] .round-btn {background:#1e1d25!important;border-color:#ffffff1c!important;color:#e9e6ee!important}
+html[data-chacha-theme=dark] .widget-library>button {background:#1e1d25!important}
+html[data-chacha-theme=dark] .conversation-list>button {background:#1e1d25!important}
+html[data-chacha-theme=dark] .disclaimer section {background:#17161d!important;border-color:#ffffff1c!important}
+html[data-chacha-theme=dark] .hero-profile-widget {background:#17161d!important}
+html[data-chacha-theme=dark] .chat-welcome span {background:#1e1d25!important;border-color:#ffffff1c!important}
+html[data-chacha-theme=dark] .thinking {background:#1e1d25!important;border-color:#ffffff1c!important}
+html[data-chacha-theme=dark] .generation-error {background:#1e1d25!important;border-color:#ffffff1c!important}
+html[data-chacha-theme=dark] .multi-toolbar {background:#1e1d25!important}
+html[data-chacha-theme=dark] .new-group {background:#1e1d25!important;border-color:#ffffff1c!important}
+html[data-chacha-theme=dark] .contact-list {background:#1e1d25!important}
+html[data-chacha-theme=dark] .contact-list article {background:#1e1d25!important}
+html[data-chacha-theme=dark] .feed-card {background:#17161d!important;border-color:#ffffff1c!important;color:#e9e6ee!important}
+html[data-chacha-theme=dark] .me-profile,.me-stats,.connection-card,.me-links,.local-card {background:#17161d!important;border-color:#ffffff1c!important;color:#e9e6ee!important}
+html[data-chacha-theme=dark] .sticker-picker-grid button {background:#1e1d25!important;border-color:#ffffff1c!important}
+html[data-chacha-theme=dark] .image-message {background:#1e1d25!important;border-color:#ffffff1c!important}
+html[data-chacha-theme=dark] .voice-message {background:#1e1d25!important;border-color:#ffffff1c!important}
+html[data-chacha-theme=dark] .call-event-message {background:#1e1d25!important;border-color:#ffffff1c!important}
+html[data-chacha-theme=dark] .call-overlay {background:#1e1d25!important;color:#e9e6ee!important}
+html[data-chacha-theme=dark] .call-transcript>div {background:#1e1d25!important;border-color:#ffffff1c!important}
+html[data-chacha-theme=dark] .call-composer {background:#1e1d25!important}
+html[data-chacha-theme=dark] .mini-switch span:after {background:#1e1d25!important}
+html[data-chacha-theme=dark] .comment-composer {background:#1e1d25!important}
+html[data-chacha-theme=dark] .feed-compose-grid>div {background:#1e1d25!important}
+html[data-chacha-theme=dark] .image-provider-picker,.image-provider-card {background:#17161d!important;border-color:#ffffff1c!important}
+html[data-chacha-theme=dark] .settings-toast {background:#1e1d25!important}
+html[data-chacha-theme=dark] .feed-reference-preview {background:#1e1d25!important}
+html[data-chacha-theme=dark] .moments-feed {background:#1e1d25!important;color:#e9e6ee!important}
+html[data-chacha-theme=dark] .moments-list {background:#1e1d25!important}
+html[data-chacha-theme=dark] .insta-detail-images img {background:#1e1d25!important}
+html[data-chacha-theme=dark] .boot {background:#1e1d25!important;color:#e9e6ee!important}
+html[data-chacha-theme=dark] .relationship-stage {background:#17161d!important;border-color:#ffffff1c!important}
+html[data-chacha-theme=dark] .relationship-events {background:#1e1d25!important;border-color:#ffffff1c!important}
+html[data-chacha-theme=dark] .relationship-readonly-metrics article {background:#1e1d25!important;border-color:#ffffff1c!important}
+html[data-chacha-theme=dark] .relationship-readonly-metrics article>em {background:#1e1d25!important}
+html[data-chacha-theme=dark] .character-quick-actions button {background:#1e1d25!important;border-color:#ffffff1c!important;color:#e9e6ee!important}
+html[data-chacha-theme=dark] .font-file-row {background:#1e1d25!important;border-color:#ffffff1c!important}
+html[data-chacha-theme=dark] .font-library {background:#1e1d25!important;border-color:#ffffff1c!important}
+html[data-chacha-theme=dark] .font-library article {background:#1e1d25!important}
+html[data-chacha-theme=dark] .lore-library-manage select,.lore-library-manage button {background:#1e1d25!important;border-color:#ffffff1c!important}
+html[data-chacha-theme=dark] .lore-tester-library {background:#1e1d25!important;border-color:#ffffff1c!important;color:#e9e6ee!important}
+html[data-chacha-theme=dark] .lore-tester-library .match-results article {background:#1e1d25!important}
+html[data-chacha-theme=dark] .memory-review-card {background:#17161d!important;border-color:#ffffff1c!important;color:#e9e6ee!important}
+html[data-chacha-theme=dark] .memory-filter-row>select {background:#1e1d25!important;border-color:#ffffff1c!important;color:#e9e6ee!important}
+html[data-chacha-theme=dark] .memory-review-list textarea,.memory-review-list select {background:#1e1d25!important;color:#e9e6ee!important}
+html[data-chacha-theme=dark] .meet-intro button {background:#1e1d25!important;color:#e9e6ee!important}
+html[data-chacha-theme=dark] .meet-session-list>button,.meet-history>button {background:#1e1d25!important;border-color:#ffffff1c!important;color:#e9e6ee!important}
+html[data-chacha-theme=dark] .meet-picker label {background:#1e1d25!important;border-color:#ffffff1c!important}
+html[data-chacha-theme=dark] .meet-composer>div:not(.meet-suggestions) {background:#1e1d25!important;border-color:#ffffff1c!important}
+html[data-chacha-theme=dark] .meet-ended {background:#1e1d25!important}
+html[data-chacha-theme=dark] .meet-invite-actions button,.meet-open-record {background:#1e1d25!important}
+html[data-chacha-theme=dark] .meet-pending-invite {background:#1e1d25!important;border-color:#ffffff1c!important}
+html[data-chacha-theme=dark] .thread-scene-tags i {background:#1e1d25!important;border-color:#ffffff1c!important}
+html[data-chacha-theme=dark] .meet-journal-actions>button {background:#1e1d25!important;color:#e9e6ee!important}
+html[data-chacha-theme=dark] .restaurant-menu article>button {background:#1e1d25!important;border-color:#ffffff1c!important}
+html[data-chacha-theme=dark] .mall-cart article>span button {background:#1e1d25!important;border-color:#ffffff1c!important}
+html[data-chacha-theme=dark] .recipient-list button {background:#1e1d25!important;border-color:#ffffff1c!important}
+html[data-chacha-theme=dark] .passcode-dots i.filled {background:#1e1d25!important}
+html[data-chacha-theme=dark] .talk-filter {background:#1e1d25!important}
+html[data-chacha-theme=dark] .talk-list>nav>button {background:#1e1d25!important}
+html[data-chacha-theme=dark] .talk-chat-thread article>div p {background:#1e1d25!important}
+html[data-chacha-theme=dark] .talk-composer {background:#1e1d25!important}
+html[data-chacha-theme=dark] .talk-composer span {background:#1e1d25!important}
+html[data-chacha-theme=dark] .chrome-omnibox {background:#1e1d25!important;color:#e9e6ee!important}
+html[data-chacha-theme=dark] .chrome-g:after {background:#1e1d25!important}
+html[data-chacha-theme=dark] .reminder-summary article {background:#1e1d25!important}
+html[data-chacha-theme=dark] .reminder-list {background:#1e1d25!important}
+html[data-chacha-theme=dark] .reminder-list article {background:#1e1d25!important}
+html[data-chacha-theme=dark] .reminder-list article>button {background:#1e1d25!important}
+html[data-chacha-theme=dark] .role-ios6-passcode-title .passcode-dots i.filled {background:#1e1d25!important}
+html[data-chacha-theme=dark] .talk-list {background:#1e1d25!important}
+html[data-chacha-theme=dark] .talk-tab-content {background:#1e1d25!important}
+html[data-chacha-theme=dark] .talk-chat-list>button,.talk-contact-list>button {background:#1e1d25!important}
+html[data-chacha-theme=dark] .talk-contact-list {background:#1e1d25!important}
+html[data-chacha-theme=dark] .talk-discover {background:#1e1d25!important}
+html[data-chacha-theme=dark] .talk-discovery-feed article,.talk-service-grid article {background:#1e1d25!important;border-color:#ffffff1c!important}
+html[data-chacha-theme=dark] .ios6-calendar>.calendar-month,.ios6-calendar>.calendar-agenda {background:#1e1d25!important;border-color:#ffffff1c!important}
+html[data-chacha-theme=dark] .calendar-weekdays {background:#1e1d25!important}
+html[data-chacha-theme=dark] .calendar-agenda>header {background:#17161d!important}
+html[data-chacha-theme=dark] .calls-list,.calls-contact-list {background:#1e1d25!important}
+html[data-chacha-theme=dark] .talk-profile-card>p {background:#1e1d25!important}
+html[data-chacha-theme=dark] .calls-list>button,.calls-contact-list>button {background:#1e1d25!important}
+html[data-chacha-theme=dark] .calls-detail>main,.calls-contact-detail>main {background:#17161d!important}
+html[data-chacha-theme=dark] .calls-detail-summary,.calls-transcript,.calls-contact-recent {background:#1e1d25!important}
+html[data-chacha-theme=dark] .calls-contact-recent>button {background:#1e1d25!important}
+html[data-chacha-theme=dark] .chat-bubble-preview-kawaii {background:#1e1d25!important}
+html[data-chacha-theme=dark] .chat-import-modal>.close {background:#17161d!important}
+html[data-chacha-theme=dark] .forum-server-rail>button em {background:#1e1d25!important}
+html[data-chacha-theme=dark] .forum-create-modal header button,.forum-character-picker header button {background:#17161d!important}
+html[data-chacha-theme=dark] .forum-character-picker>div>button {background:#1e1d25!important}
+html[data-chacha-theme=dark] .forum-post-list>button {background:#1e1d25!important;border-color:#ffffff1c!important;color:#e9e6ee!important}
+html[data-chacha-theme=dark] .forum-post-list>button:hover {background:#1e1d25!important}
+html[data-chacha-theme=dark] .forum-thread-op {background:#1e1d25!important;border-color:#ffffff1c!important}
+html[data-chacha-theme=dark] .forum-directory-page>header>button {background:#17161d!important;color:#e9e6ee!important}
+html[data-chacha-theme=dark] .forum-directory-search {background:#1e1d25!important;border-color:#ffffff1c!important}
+html[data-chacha-theme=dark] .forum-directory-card {background:#17161d!important;border-color:#ffffff1c!important;color:#e9e6ee!important}
+html[data-chacha-theme=dark] .forum-directory-page.forum-directory-feed {background:#17161d!important}
+html[data-chacha-theme=dark] .forum-directory-page>main.forum-directory-feed-list {background:#17161d!important}
+html[data-chacha-theme=dark] .forum-directory-feed-row {background:#1e1d25!important;color:#e9e6ee!important}
+html[data-chacha-theme=dark] .forum-directory-feed-row:hover {background:#1e1d25!important}
+html[data-chacha-theme=dark] .forum-x-tabs {background:#1e1d25!important}
+html[data-chacha-theme=dark] .forum-x-feed,.forum-x-thread {background:#1e1d25!important}
+html[data-chacha-theme=dark] .forum-x-post {background:#1e1d25!important}
+html[data-chacha-theme=dark] .forum-x-post:hover {background:#1e1d25!important}
+html[data-chacha-theme=dark] .forum-editor-preview {background:#1e1d25!important;border-color:#ffffff1c!important}
+html[data-chacha-theme=dark] .forum-editor-group {background:#1e1d25!important;border-color:#ffffff1c!important}
+html[data-chacha-theme=dark] .forum-editor-group input:focus,.forum-editor-group textarea:focus {background:#1e1d25!important}
+html[data-chacha-theme=dark] .forum-editor-clear,.forum-editor-add,.forum-editor-generate {background:#1e1d25!important;color:#e9e6ee!important}
+html[data-chacha-theme=dark] .forum-editor-toggle i:after {background:#1e1d25!important}
+html[data-chacha-theme=dark] .forum-x-profile {background:#1e1d25!important}
+html[data-chacha-theme=dark] .forum-x-profile .profile-row>button {background:#1e1d25!important;border-color:#ffffff1c!important;color:#e9e6ee!important}
+html[data-chacha-theme=dark] .forum-editor-directory-preview {background:#1e1d25!important}
+html[data-chacha-theme=dark] .forum-lore-select>div {background:#1e1d25!important;border-color:#ffffff1c!important}
+html[data-chacha-theme=dark] .forum-lore-select>div>button {background:#1e1d25!important;color:#e9e6ee!important}
+html[data-chacha-theme=dark] .forum-dm-page {background:#17161d!important}
+html[data-chacha-theme=dark] .forum-dm-list>button {background:#1e1d25!important}
+html[data-chacha-theme=dark] .forum-dm-bubble-row p {background:#1e1d25!important;border-color:#ffffff1c!important}
+html[data-chacha-theme=dark] .forum-dm-composer {background:#1e1d25!important}
+html[data-chacha-theme=dark] .forum-user-profile {background:#1e1d25!important}
+html[data-chacha-theme=dark] .forum-user-identity>button {background:#1e1d25!important;border-color:#ffffff1c!important}
+html[data-chacha-theme=dark] .forum-user-tabs button {background:#1e1d25!important}
+html[data-chacha-theme=dark] .forum-user-posts>button {background:#1e1d25!important}
+html[data-chacha-theme=dark] .forum-user-posts>button:hover {background:#1e1d25!important}
+html[data-chacha-theme=dark] .forum-profile-editor input:focus,.forum-profile-editor textarea:focus {background:#1e1d25!important}
+html[data-chacha-theme=dark] .forum-liked-title {background:#1e1d25!important}
+html[data-chacha-theme=dark] .forum-liked-group {background:#1e1d25!important}
+html[data-chacha-theme=dark] .forum-liked-group>button {background:#1e1d25!important}
+html[data-chacha-theme=dark] .forum-liked-group>button:hover {background:#1e1d25!important}
+html[data-chacha-theme=dark] .forum-profile-editor>header {background:#17161d!important}
+html[data-chacha-theme=dark] .forum-profile-editor-card {background:#17161d!important;border-color:#ffffff1c!important}
+html[data-chacha-theme=dark] .forum-chat-interop-toggle>i:after {background:#1e1d25!important}
+html[data-chacha-theme=dark] .forum-chat-interop>div>button {background:#1e1d25!important}
+html[data-chacha-theme=dark] .forum-compose-page {background:#17161d!important}
+html[data-chacha-theme=dark] .forum-compose-page>footer {background:#17161d!important}
+html[data-chacha-theme=dark] .forum-compose-media figure.sticker {background:#1e1d25!important}
+html[data-chacha-theme=dark] .forum-post-media figure.sticker {background:#1e1d25!important;border-color:#ffffff1c!important}
+html[data-chacha-theme=dark] .forum-share-modal>section>button {background:#17161d!important}
+html[data-chacha-theme=dark] .forum-square-scroll {background:#1e1d25!important}
+html[data-chacha-theme=dark] .forum-auto-comments {background:#1e1d25!important}
+html[data-chacha-theme=dark] .forum-continue-comments {background:#1e1d25!important;border-color:#ffffff1c!important;color:#e9e6ee!important}
+html[data-chacha-theme=dark] .forum-profile-banner-editor nav label,.forum-profile-banner-editor nav button {background:#17161d!important;border-color:#ffffff1c!important;color:#e9e6ee!important}
+html[data-chacha-theme=dark] .red-packet-message>div {background:#1e1d25!important;color:#e9e6ee!important}
+html[data-chacha-theme=dark] .red-packet-message footer {background:#1e1d25!important}
+html[data-chacha-theme=dark] .memory-nucleus-map .node em {background:#1e1d25!important}
+html[data-chacha-theme=dark] .memory-setting-toggle i:after {background:#1e1d25!important}
+html[data-chacha-theme=dark] .ecosystem-search {background:#1e1d25!important}
+html[data-chacha-theme=dark] .ecosystem-contact-list>button,.talk-contact-list>button {background:#1e1d25!important}
+html[data-chacha-theme=dark] .ecosystem-contact-card>p {background:#1e1d25!important}
+html[data-chacha-theme=dark] .ecosystem-info-list {background:#1e1d25!important}
+html[data-chacha-theme=dark] .talk-composer.editable input {background:#1e1d25!important}
+html[data-chacha-theme=dark] .phone-send-confirm>div button {background:#1e1d25!important}
+html[data-chacha-theme=dark] .ecosystem-segment button {background:#1e1d25!important}
+html[data-chacha-theme=dark] .maps-list article {background:#1e1d25!important}
+html[data-chacha-theme=dark] .mail-list>button {background:#1e1d25!important}
+html[data-chacha-theme=dark] .mail-compose input,.mail-compose select {background:#1e1d25!important}
+html[data-chacha-theme=dark] .mail-compose textarea {background:#1e1d25!important}
+html[data-chacha-theme=dark] .mail-detail-actions button {background:#1e1d25!important}
+html[data-chacha-theme=dark] .simple-phone-grid article,.simple-phone-row,.simple-wallet-balance {background:#1e1d25!important;border-color:#ffffff1c!important}
+html[data-chacha-theme=dark] .utility-list>button {background:#1e1d25!important}
+html[data-chacha-theme=dark] .utility-detail pre {background:#1e1d25!important;border-color:#ffffff1c!important}
+html[data-chacha-theme=dark] .memo-transcript {background:#1e1d25!important}
+html[data-chacha-theme=dark] .reminder-summary>div {background:#1e1d25!important}
+html[data-chacha-theme=dark] .system-account {background:#1e1d25!important}
+html[data-chacha-theme=dark] .system-menu,.system-list {background:#1e1d25!important}
+html[data-chacha-theme=dark] .screen-bars {background:#17161d!important}
+html[data-chacha-theme=dark] .recent-app-preview>span {background:#1e1d25!important}
+html[data-chacha-theme=dark] .maps-list>button {background:#1e1d25!important}
+html[data-chacha-theme=dark] .map-place-detail>p {background:#1e1d25!important}
+html[data-chacha-theme=dark] .map-place-detail>section {background:#17161d!important}
+html[data-chacha-theme=dark] .inner-voice-export-clone {background:#1e1d25!important;color:#e9e6ee!important}
+html[data-chacha-theme=dark] .music-qr {background:#1e1d25!important}
+html[data-chacha-theme=dark] .music-search-box {background:#1e1d25!important;color:#e9e6ee!important}
+html[data-chacha-theme=dark] .music-play-large {background:#1e1d25!important;color:#e9e6ee!important}
+html[data-chacha-theme=dark] .island-shop-view>header>b {background:#17161d!important}
+html[data-chacha-theme=dark] .couple-island-invitation-card.response .couple-island-invitation-icon {background:#1e1d25!important;color:#e9e6ee!important}
+html[data-chacha-theme=dark] .music-mood-avatar {background:#1e1d25!important;color:#e9e6ee!important}
