@@ -1,5 +1,6 @@
 import {create} from "zustand";
 import {db,getAppSettings,getProvider,getAppearance} from "./db";
+import {loadAnniversaries} from "./anniversary";
 import {migrateMeetSessionNarrative} from "./meet";
 import type {AppSettings,Character,Conversation,FeedPost,LoreBook,Memory,Message,Preset,ProviderSettings,MemoryExtractionBatch,AppearanceSettings,ImageAsset,MeetSession} from "./types";
 
@@ -39,5 +40,5 @@ export const useStore=create<State>((set)=>({
    messages:[...state.messages.filter((row)=>row.conversationId!==conversationId),...messages],
   }));
  },
- reload:async()=>{const [characters,conversations,messages,feedPosts,loreBooks,memories,presets,memoryExtractionBatches,appearance,imageAssets,meetSessions,provider,settings]=await Promise.all([db.characters.toArray(),db.conversations.toArray(),db.messages.toArray(),db.feedPosts.toArray(),db.loreBooks.toArray(),db.memories.toArray(),db.presets.toArray(),db.memoryExtractionBatches.toArray().then(rows=>rows.filter(batch=>batch.source==="chat")),getAppearance(),db.imageAssets.toArray(),db.meetSessions.toArray().then(async rows=>{const meetSessions=rows.map(migrateMeetSessionNarrative),migrated=meetSessions.filter((row,index)=>row!==rows[index]);if(migrated.length)await db.meetSessions.bulkPut(migrated);return meetSessions}),getProvider(),getAppSettings()]);set({ready:true,characters,conversations,messages,feedPosts,loreBooks,memories,presets,memoryExtractionBatches,appearance,imageAssets,meetSessions,provider,settings})}
+ reload:async()=>{const [characters,conversations,messages,feedPosts,loreBooks,memories,presets,memoryExtractionBatches,appearance,imageAssets,meetSessions,provider,settings]=await Promise.all([db.characters.toArray(),db.conversations.toArray(),db.messages.toArray(),db.feedPosts.toArray(),db.loreBooks.toArray(),db.memories.toArray(),db.presets.toArray(),db.memoryExtractionBatches.toArray().then(rows=>rows.filter(batch=>batch.source==="chat")),getAppearance(),db.imageAssets.toArray(),db.meetSessions.toArray().then(async rows=>{const meetSessions=rows.map(migrateMeetSessionNarrative),migrated=meetSessions.filter((row,index)=>row!==rows[index]);if(migrated.length)await db.meetSessions.bulkPut(migrated);return meetSessions}),getProvider(),getAppSettings(),loadAnniversaries()]);set({ready:true,characters,conversations,messages,feedPosts,loreBooks,memories,presets,memoryExtractionBatches,appearance,imageAssets,meetSessions,provider,settings})}
 }));

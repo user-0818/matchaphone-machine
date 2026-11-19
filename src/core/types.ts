@@ -2029,7 +2029,9 @@ export type DesktopAppId =
   | "phone-check"
   | "forum"
   | "music"
-  | "couple-island";
+  | "couple-island"
+  | "anniversary"
+  | "study";
 export type AppearanceSource = {
   type: "default" | "color" | "asset" | "url";
   value?: string;
@@ -2039,7 +2041,8 @@ export type DesktopWidgetType =
   | "photo-square"
   | "photo-banner"
   | "profile-status"
-  | "compliment-bubble";
+  | "compliment-bubble"
+  | "anniversary-card";
 export interface HeroWidgetData {
   topBackground?: AppearanceSource;
   sideImage?: AppearanceSource;

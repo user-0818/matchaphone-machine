@@ -1,5 +1,5 @@
 import type {LucideIcon} from "lucide-react";
-import {BookOpen,Brain,Coffee,ContactRound,MessageCircleMore,Palette,Settings,ShoppingBag,Smartphone,MessagesSquare,Music2,HeartHandshake} from "lucide-react";
+import {BookOpen,Brain,CalendarHeart,Coffee,ContactRound,GraduationCap,MessageCircleMore,Palette,Settings,ShoppingBag,Smartphone,MessagesSquare,Music2,HeartHandshake} from "lucide-react";
 import type {
   AppearanceFont,
   AppearanceSettings,
@@ -7,6 +7,7 @@ import type {
   ComplimentBubbleWidgetData,
   DesktopAppId,
   DesktopItem,
+  DesktopWidgetType,
   HeroWidgetData,
   ProfileStatusWidgetData
 } from "./types";
@@ -26,7 +27,9 @@ export const DESKTOP_APPS:DesktopAppDefinition[]=[
   {id:"phone-check",name:"查手机",path:"/phone-check",icon:Smartphone},
   {id:"forum",name:"论坛",path:"/forum",icon:MessagesSquare},
   {id:"music",name:"音乐",path:"/music",icon:Music2},
-  {id:"couple-island",name:"茶侣岛",path:"/couple-island",icon:HeartHandshake}
+  {id:"couple-island",name:"茶侣岛",path:"/couple-island",icon:HeartHandshake},
+  {id:"anniversary",name:"纪念日",path:"/anniversary",icon:CalendarHeart},
+  {id:"study",name:"学习",path:"/study",icon:GraduationCap}
 ];
 
 const defaultImage=(value:string):AppearanceSource=>({type:"url",value});
@@ -78,6 +81,7 @@ export const createDesktopAppItem=(id:DesktopAppId,page:number,x:number,y:number
 const app=createDesktopAppItem;
 export const createHeroItem=(id="widget-hero"):DesktopItem=>({id,kind:"widget",widgetType:"hero-profile",hero:defaultHeroData(),page:0,x:0,y:0,w:4,h:2});
 export const createProfileStatusItem=(id="widget-profile-status"):DesktopItem=>({id,kind:"widget",widgetType:"profile-status",profileStatus:defaultProfileStatusData(),page:0,x:0,y:2,w:2,h:2});
+export const createAnniversaryWidgetItem=(id="widget-anniversary"):DesktopItem=>({id,kind:"widget",widgetType:"anniversary-card",page:1,x:2,y:2,w:2,h:2});
 export const createComplimentBubbleItem=(id="widget-compliment-bubble"):DesktopItem=>({id,kind:"widget",widgetType:"compliment-bubble",complimentBubble:defaultComplimentBubbleData(),page:0,x:2,y:4,w:2,h:2});
 
 const LEGACY_V18_APP_LAYOUT:Record<DesktopAppId,{page:number;x:number;y:number}>={
@@ -85,14 +89,15 @@ const LEGACY_V18_APP_LAYOUT:Record<DesktopAppId,{page:number;x:number;y:number}>
   appearance:{page:0,x:2,y:3},settings:{page:0,x:3,y:3},
   lore:{page:0,x:0,y:4},memories:{page:0,x:1,y:4},
   meet:{page:0,x:0,y:5},mall:{page:0,x:1,y:5},
-  "phone-check":{page:1,x:0,y:0},forum:{page:1,x:1,y:0},music:{page:0,x:0,y:5},"couple-island":{page:0,x:1,y:5}
+  "phone-check":{page:1,x:0,y:0},forum:{page:1,x:1,y:0},music:{page:0,x:0,y:5},"couple-island":{page:0,x:1,y:5},
+  anniversary:{page:1,x:0,y:0},study:{page:1,x:1,y:0}
 };
 const DEFAULT_DOCK:DesktopAppId[]=["messages","characters","appearance","settings"];
-const DEFAULT_DESKTOP_ORDER:DesktopAppId[]=["lore","memories","meet","mall","phone-check","forum","music","couple-island"];
+const DEFAULT_DESKTOP_ORDER:DesktopAppId[]=["lore","memories","meet","mall","phone-check","forum","music","couple-island","anniversary","study"];
 const DEFAULT_APP_LAYOUT:Record<string,{page:number;x:number;y:number}>={
   lore:{page:0,x:2,y:2},memories:{page:0,x:3,y:2},
   meet:{page:0,x:2,y:3},mall:{page:0,x:3,y:3},
-  "phone-check":{page:0,x:0,y:4},forum:{page:0,x:1,y:4},music:{page:0,x:0,y:5},"couple-island":{page:0,x:1,y:5}
+  "phone-check":{page:0,x:0,y:4},forum:{page:0,x:1,y:4},music:{page:0,x:0,y:5},"couple-island":{page:0,x:1,y:5},anniversary:{page:1,x:0,y:0},study:{page:1,x:1,y:0}
 };
 
 export const defaultAppearance:AppearanceSettings={
@@ -107,7 +112,7 @@ export const defaultAppearance:AppearanceSettings={
   fontScale:1,
   dock:[...DEFAULT_DOCK],
   items:[
-    createHeroItem(),createProfileStatusItem(),createComplimentBubbleItem(),
+    createHeroItem(),createProfileStatusItem(),createComplimentBubbleItem(),createAnniversaryWidgetItem(),
     ...DEFAULT_DESKTOP_ORDER.map(id=>app(id,DEFAULT_APP_LAYOUT[id].page,DEFAULT_APP_LAYOUT[id].x,DEFAULT_APP_LAYOUT[id].y))
   ]
 };
@@ -174,10 +179,11 @@ function normalizeVersion18Items(rawItems:DesktopItem[],dock:DesktopAppId[]=[]){
     }else item=raw;
     seenIds.add(item.id);items.push(clampItem(item));
   }
-  const ensureWidget=(type:"hero-profile"|"profile-status"|"compliment-bubble",create:()=>DesktopItem)=>{if(!items.some(item=>item.widgetType===type))items.push(create())};
+  const ensureWidget=(type:"hero-profile"|"profile-status"|"compliment-bubble"|"anniversary-card",create:()=>DesktopItem)=>{if(!items.some(item=>item.widgetType===type))items.push(create())};
   ensureWidget("hero-profile",()=>createHeroItem());
   ensureWidget("profile-status",()=>createProfileStatusItem());
   ensureWidget("compliment-bubble",()=>createComplimentBubbleItem());
+  ensureWidget("anniversary-card",()=>createAnniversaryWidgetItem());
   for(const definition of DESKTOP_APPS){
     if(dock.includes(definition.id)||items.some(item=>item.kind==="app"&&item.appId===definition.id))continue;
     const preferred=LEGACY_V18_APP_LAYOUT[definition.id],probe=app(definition.id,preferred.page,preferred.x,preferred.y);
@@ -216,6 +222,23 @@ export function normalizeAppearance(input?:Partial<AppearanceSettings>|null):App
   let rawItems=(input.items?.length?input.items:base.items).map(item=>({...item}));
   if(legacyVersion<2)rawItems=rawItems.filter(item=>!["clock","recent"].includes(String(item.widgetType)));
   const items=migrateItemsToVersion20(normalizeVersion19Items(rawItems,dock,legacyVersion),legacyVersion);
+  // 兜底：任何已登记但用户桌面上还没有的 App，都补一个图标上去。
+  // 这样后续新增 App（如「学习」）在老用户的手机上也会自己出现，不用手动重置桌面。
+  let ensuredItems=items;
+  // 兜底：老布局里没有的小组件，也补一个上去（不然新加的纪念日小组件永远出不来）。
+  const WIDGET_FALLBACKS:[DesktopWidgetType,()=>DesktopItem][]=[["anniversary-card",()=>createAnniversaryWidgetItem()]];
+  for(const [type,create] of WIDGET_FALLBACKS){
+    if(ensuredItems.some(item=>item.kind==="widget"&&item.widgetType===type))continue;
+    ensuredItems=[...ensuredItems,create()];
+  }
+  for(const definition of DESKTOP_APPS){
+    if(dock.includes(definition.id))continue;
+    if(ensuredItems.some(item=>item.kind==="app"&&item.appId===definition.id))continue;
+    const preferred=DEFAULT_APP_LAYOUT[definition.id]??{page:0,x:0,y:0};
+    const probe=app(definition.id,preferred.page,preferred.x,preferred.y);
+    const spot=ensuredItems.some(item=>overlaps(item,probe))?firstFreePosition(ensuredItems,1,1,preferred.page):preferred;
+    if(spot)ensuredItems=[...ensuredItems,app(definition.id,spot.page,spot.x,spot.y)];
+  }
   const legacyFont=(input as Partial<AppearanceSettings>&{font?:Partial<AppearanceFont>}).font;
   const rawFonts=input.fonts?.length?input.fonts:legacyFont?[legacyFont]:[];
   const fonts=rawFonts.map((font,index)=>({...font,id:font.id??("legacy-font-"+index),source:font.source??(font.url?"url":"local")} as AppearanceFont)).filter((font,index,all)=>Boolean(font.name&&font.format&&(font.source==="url"?font.url:font.data))&&all.findIndex(other=>other.id===font.id)===index);
@@ -224,7 +247,7 @@ export function normalizeAppearance(input?:Partial<AppearanceSettings>|null):App
   const themeMode=input.themeMode==="dark"||input.themeMode==="system"?input.themeMode:"light";
   const chatBubbleStyle=input.chatBubbleStyle==="kawaii"?"kawaii":"default";
   const chatAvatarShape=input.chatAvatarShape==="square"||input.chatAvatarShape==="rounded"?input.chatAvatarShape:"circle";
-  return{...base,...input,version:22,themeMode,chatBubbleStyle,chatAvatarShape,fonts,activeFontId,fontScale,font:undefined,wallpaper:{...base.wallpaper,...input.wallpaper},feedCover:{...base.feedCover,...input.feedCover},iconSources:{...base.iconSources,...input.iconSources},dock,items};
+  return{...base,...input,version:22,themeMode,chatBubbleStyle,chatAvatarShape,fonts,activeFontId,fontScale,font:undefined,wallpaper:{...base.wallpaper,...input.wallpaper},feedCover:{...base.feedCover,...input.feedCover},iconSources:{...base.iconSources,...input.iconSources},dock,items:ensuredItems};
 }
 
 export function moveDesktopItem(items:DesktopItem[],id:string,page:number,x:number,y:number){

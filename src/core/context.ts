@@ -1,5 +1,6 @@
 ﻿import type {AppSettings,Character,ChatScene,Conversation,GroupNpc,LoreBook,MediaAsset,Memory,Message,ProviderSettings,RegenerationReason} from "./types";
 import {messageInteractionContext} from "./messageInteractions";
+import {anniversaryCache,anniversaryContextBlock} from "./anniversary";
 import {localTimeContext} from "./localTime";
 import {selectMemories} from "./memory";
 import {chatSettingsOf,coreSettingOf,languageStyleInstruction,personaOf,relationshipContextOf} from "./character";
@@ -29,6 +30,7 @@ export function buildContext(input:{character:Character;conversation:Conversatio
   time,
   compiledLore,
   isNpc?"":relationshipContextOf(character),
+  anniversaryContextBlock(anniversaryCache()),
   memory.length?`海马体记忆（自然使用，不得提及记忆系统或评分）：\n${memory.map(item=>`- ${item.title?`${item.title}：`:""}${item.content}${item.meaning?`（意义：${item.meaning}）`:""}`).join("\n")}`:"",
   loreEntriesBlock(loreGroups["after-memory"]),
   input.forumContext?`论坛互通内容：\n${input.forumContext}`:"",
