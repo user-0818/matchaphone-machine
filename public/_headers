@@ -1,0 +1,10 @@
+# 入口 HTML 永远向服务器校验，避免浏览器拿旧版 index.html 引用已经不存在的 JS 文件
+/index.html
+  Cache-Control: no-cache, must-revalidate
+
+/
+  Cache-Control: no-cache, must-revalidate
+
+# 带哈希的静态资源可以长期缓存
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
