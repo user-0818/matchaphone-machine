@@ -60,6 +60,31 @@ export function PhoneShell(){
   useLayoutEffect(()=>{const root=document.documentElement;if(pwaHomeRecovery)root.dataset.chachaHomeRecovery="true";else delete root.dataset.chachaHomeRecovery;return()=>{delete root.dataset.chachaHomeRecovery}},[pwaHomeRecovery]);
   const homeStyleLayout=pwaHomeRecovery?recoveryLayout:(pwaHomeLayout?homeLayout:null);
   const shellStyle={"--keyboard-inset":`${keyboard}px`,...(homeStyleLayout?{"--pwa-home-desktop-height":`${homeStyleLayout.desktopHeight}px`,"--pwa-home-row-1":`${homeStyleLayout.rowHeights[0]}px`,"--pwa-home-row-2":`${homeStyleLayout.rowHeights[1]}px`,"--pwa-home-row-3":`${homeStyleLayout.rowHeights[2]}px`,"--pwa-home-row-4":`${homeStyleLayout.rowHeights[3]}px`,"--pwa-home-row-5":`${homeStyleLayout.rowHeights[4]}px`,"--pwa-home-row-6":`${homeStyleLayout.rowHeights[5]}px`,"--pwa-home-gap-1":`${homeStyleLayout.rowGaps[0]}px`,"--pwa-home-gap-2":`${homeStyleLayout.rowGaps[1]}px`,"--pwa-home-gap-3":`${homeStyleLayout.rowGaps[2]}px`,"--pwa-home-gap-4":`${homeStyleLayout.rowGaps[3]}px`,"--pwa-home-gap-5":`${homeStyleLayout.rowGaps[4]}px`,"--pwa-home-row-gap":`${pwaHomeRecovery?recoveryLayout.rowGaps[0]:homeLayout.rowGap}px`,"--pwa-home-top-padding":`${homeStyleLayout.topPadding}px`,"--pwa-home-bottom-padding":`${homeStyleLayout.bottomPadding}px`,"--pwa-home-footer-height":`${homeStyleLayout.footerHeight}px`,"--pwa-home-content-to-dots-gap":`${homeStyleLayout.contentToDotsGap}px`,"--pwa-home-footer-gap":`${homeStyleLayout.dotsToDockGap}px`,"--pwa-home-dock-height":`${homeStyleLayout.dockHeight}px`,"--pwa-home-hero-height":`${homeStyleLayout.heroHeight}px`,"--pwa-home-hero-thumb-size":`${homeStyleLayout.heroThumbSize}px`,...(pwaHomeRecovery?{"--pwa-home-recovery-height":`${recoveryLayout.viewportHeight}px`}:null)}:null)} as React.CSSProperties;
+  const swipePath=useRef(loc.pathname);swipePath.current=loc.pathname;
+  useEffect(()=>{
+    let tracking=false,sx=0,sy=0,st=0;
+    const ignored=(target:EventTarget|null)=>Boolean(target&&(target as HTMLElement).closest("input,textarea,select,[contenteditable=true]"));
+    const rootRoute=(path:string)=>path==="/"||path==="/messages/chats";
+    const onStart=(event:TouchEvent)=>{
+      tracking=false;
+      if(event.touches.length!==1||ignored(event.target))return;
+      const touch=event.touches[0];
+      if(touch.clientX>26||rootRoute(swipePath.current))return;
+      tracking=true;sx=touch.clientX;sy=touch.clientY;st=Date.now();
+    };
+    const onEnd=(event:TouchEvent)=>{
+      if(!tracking)return;tracking=false;
+      const touch=event.changedTouches[0],dx=touch.clientX-sx,dy=touch.clientY-sy;
+      if(dx<76||Math.abs(dy)>110||Date.now()-st>1000)return;
+      const path=swipePath.current;
+      if(/^\/messages\/[^/]+$/.test(path))nav("/messages/chats");else nav(-1);
+    };
+    const onCancel=()=>{tracking=false};
+    document.addEventListener("touchstart",onStart,{passive:true});
+    document.addEventListener("touchend",onEnd,{passive:true});
+    document.addEventListener("touchcancel",onCancel,{passive:true});
+    return ()=>{document.removeEventListener("touchstart",onStart);document.removeEventListener("touchend",onEnd);document.removeEventListener("touchcancel",onCancel)};
+  },[]);
   return <main className="stage"><section className={`phone ${keyboard?"keyboard-open ":""}${standalone?"standalone-mode ":""}${nativeViewport?"native-mobile-viewport ":""}${pwaHomeLayout?"pwa-home-layout-v3 ":""}${recoveryCandidate?"pwa-home-recovery-candidate ":""}${pwaHomeRecovery?"pwa-home-layout-v5-recovery ":""}${stickerSettingsRoot?"sticker-settings-route ":""}${chatSettingsRoot?"chat-settings-route ":""}${messageFlowRoot?"message-flow-route ":""}${forumRoot?"forum-route ":""}${nativeTopbarRoot?"native-topbar-route":""}`} style={shellStyle}><div className="wallpaper"/><header className="status"><b>{time}</b><span className="signals"><Wifi size={15}/><BatteryMedium size={18}/></span></header><div className="screen"><Outlet/></div>{!musicRoot&&<GlobalMusicMiniPlayer/>}{!home&&!socialRoot&&!chatChildRoot&&!appearanceRoot&&!characterRoot&&!settingsRoot&&!meetRoot&&!phoneCheckRoot&&!mallRoot&&!musicRoot&&!coupleIslandRoot&&!anniversaryRoot&&!studyRoot&&!forumRoot&&!memoryRoot&&!loreRoot&&!messageFlowRoot&&<button className="back" onClick={()=>chatRoomRoot?nav("/messages/chats"):nav(-1)} aria-label="返回"><ArrowLeft/></button>}</section></main>}export const APP_TOPBAR_CONTENT_HEIGHT=58;
 export function AppTopBar({title,onBack,backLabel="返回",actions,className="",titleClassName=""}:{title:string;onBack:()=>void;backLabel?:string;actions?:React.ReactNode;className?:string;titleClassName?:string}){return <header className={`app-topbar ${className}`.trim()} style={{"--app-topbar-content-height":`${APP_TOPBAR_CONTENT_HEIGHT}px`} as React.CSSProperties}><button type="button" className="app-topbar-back" aria-label={backLabel} onClick={onBack}><ChevronLeft/></button><h1 className={`app-topbar-title ${titleClassName}`.trim()}>{title}</h1><div className="app-topbar-actions">{actions}</div></header>}
 export function AppHeader({title,subtitle,action}:{title:string;subtitle?:string;action?:React.ReactNode}){return <header className="app-header"><div><h1>{title}</h1>{subtitle&&<p>{subtitle}</p>}</div>{action}</header>}
