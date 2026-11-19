@@ -1,0 +1,71 @@
+import {StrictMode,Suspense,lazy as reactLazy,useEffect,useState,type ComponentType,type ReactNode} from "react";
+import {createRoot} from "react-dom/client";
+import {BrowserRouter,Navigate,Route,Routes,useLocation} from "react-router-dom";
+import {PhoneShell} from "./components/ui";
+import {LockScreen} from "./components/LockScreen";
+import {useStore} from "./core/store";
+import {activeAppearanceFont,appearanceFontCss} from "./core/fontAssets";
+import {MusicPlayerProvider} from "./core/musicPlayer";
+import Home from "./pages/Home";
+import Onboarding from "./pages/Onboarding";
+import AppErrorBoundary from "./components/AppErrorBoundary";
+import {installBrowserCompatibility} from "./core/browserCompat";
+import "./styles.css";
+const LAZY_RETRY_KEY="chacha-lazy-import-retry-v1";
+function lazy<T extends ComponentType<any>>(loader:()=>Promise<{default:T}>){return reactLazy(async()=>{try{const loaded=await loader();try{sessionStorage.removeItem(LAZY_RETRY_KEY)}catch{}return loaded}catch(error){/* 旧缓存导致的加载失败：先原地重试一次，不再整页刷新 */await new Promise(resolve=>setTimeout(resolve,600));try{const loaded=await loader();try{sessionStorage.removeItem(LAZY_RETRY_KEY)}catch{}return loaded}catch(second){let shouldReload=false;try{shouldReload=sessionStorage.getItem(LAZY_RETRY_KEY)!=="1";if(shouldReload)sessionStorage.setItem(LAZY_RETRY_KEY,"1")}catch{}if(shouldReload){window.location.reload();throw second}try{sessionStorage.removeItem(LAZY_RETRY_KEY)}catch{}throw second}}})}
+const MusicPage=lazy(()=>import("./pages/MusicPage"));const MusicReportPage=lazy(()=>import("./pages/MusicReportPage"));const CoupleIslandPage=lazy(()=>import("./pages/CoupleIslandPage"));const NotificationCoordinator=lazy(()=>import("./components/NotificationCoordinator"));const ChatReplyCoordinator=lazy(()=>import("./components/ChatReplyCoordinator"));const AddFriendsPage=lazy(()=>import("./pages/ContactFlows").then(module=>({default:module.AddFriendsPage})));const FriendRequestsPage=lazy(()=>import("./pages/ContactFlows").then(module=>({default:module.FriendRequestsPage})));const GroupCreatePage=lazy(()=>import("./pages/ContactFlows").then(module=>({default:module.GroupCreatePage})));const GroupMemberInvitePage=lazy(()=>import("./pages/ContactFlows").then(module=>({default:module.GroupMemberInvitePage})));const ForumPage=lazy(()=>import("./pages/ForumPage"));const ForumEditorPage=lazy(()=>import("./pages/ForumEditorPage"));const IncomingCallCoordinator=lazy(()=>import("./components/IncomingCallCoordinator"));const ChatSettingsPage=lazy(()=>import("./pages/ChatSettingsPage"));const ChatSearchPage=lazy(()=>import("./pages/ChatSearchPage"));const InnerVoicePage=lazy(()=>import("./pages/InnerVoicePage"));const PhoneCheckPage=lazy(()=>import("./pages/PhoneCheckPage"));const MallPage=lazy(()=>import("./pages/MallPage"));const ImageGenerationSettingsPage=lazy(()=>import("./pages/ImageGenerationSettingsPage"));const SpeechSettingsPage=lazy(()=>import("./pages/SpeechSettingsPage"));const StickerSettingsPage=lazy(()=>import("./pages/StickerSettingsPage"));const CharactersPage=lazy(()=>import("./pages/CharactersPage"));const UserPersonaPage=lazy(()=>import("./pages/UserPersonaPage"));const CharacterDetail=lazy(()=>import("./pages/CharacterDetail"));const MessagesPage=lazy(()=>import("./pages/MessagesPage"));const ChatPage=lazy(()=>import("./pages/ChatPage"));const SettingsPage=lazy(()=>import("./pages/SettingsPage"));const LorePage=lazy(()=>import("./pages/LorePage"));const LoreDetail=lazy(()=>import("./pages/LoreDetail"));const MemorySettingsPage=lazy(()=>import("./pages/MemorySettingsPage"));const MemoriesPage=lazy(()=>import("./pages/MemoriesPage"));const SocialLayout=lazy(()=>import("./pages/SocialLayout"));const FeedTab=lazy(()=>import("./pages/FeedTab"));const ContactsTab=lazy(()=>import("./pages/ContactsTab"));const MeTab=lazy(()=>import("./pages/MeTab"));const AppearancePage=lazy(()=>import("./pages/AppearancePage"));const ProactiveRunner=lazy(()=>import("./components/ProactiveRunner"));const MeetPage=lazy(()=>import("./pages/MeetPage"));const MeetCreatePage=lazy(()=>import("./pages/MeetCreatePage"));const MeetSessionPage=lazy(()=>import("./pages/MeetSessionPage"));const MeetFavoritesPage=lazy(()=>import("./pages/MeetFavoritesPage"));const AnniversaryPage=lazy(()=>import("./pages/AnniversaryPage"));const StudyPage=lazy(()=>import("./pages/StudyPage"));const StudySubjectPage=lazy(()=>import("./pages/StudySubjectPage"));
+function MatchaPourLoader({compact=false}:{compact?:boolean}){return <div className={`matcha-pour-loader ${compact?"compact":""}`} role="img" aria-label="正在向玻璃杯倒入抹茶"><span className="matcha-stream"/><div className="matcha-glass"><span className="matcha-liquid"><i/><i/><i/></span></div><span className="matcha-shadow"/></div>}
+function RouteLoading(){return <div className="route-loading" role="status"><MatchaPourLoader compact/><span>正在打开…</span></div>}
+function RouteErrorBoundary({children}:{children:ReactNode}){const location=useLocation();return <AppErrorBoundary key={location.pathname} phase="route">{children}</AppErrorBoundary>}
+const TEXT_SCALE_SELECTOR="h1,h2,h3,h4,h5,h6,p,small,b,strong,em,label,button,input,textarea,select,option,span";
+function GlobalTextScale({scale}:{scale:number}){useEffect(()=>{if(Math.abs(scale-1)<.001)return;const originals=new Map<HTMLElement,string>(),bases=new Map<HTMLElement,number>();let frame=0,rootObserver:MutationObserver|undefined,discoveryObserver:MutationObserver|undefined;const apply=(root:HTMLElement)=>{frame=0;root.querySelectorAll<HTMLElement>(TEXT_SCALE_SELECTOR).forEach(element=>{if(element.closest("[data-no-font-scale]"))return;if(!bases.has(element)){originals.set(element,element.style.fontSize);const base=Number.parseFloat(getComputedStyle(element).fontSize);if(!Number.isFinite(base))return;bases.set(element,base)}element.style.fontSize=`${Math.round((bases.get(element)??16)*scale*100)/100}px`})},attach=()=>{const root=document.querySelector<HTMLElement>(".phone");if(!root)return false;apply(root);rootObserver=new MutationObserver(()=>{if(!frame)frame=requestAnimationFrame(()=>apply(root))});rootObserver.observe(root,{childList:true,subtree:true});return true};if(!attach()){discoveryObserver=new MutationObserver(()=>{if(attach())discoveryObserver?.disconnect()});discoveryObserver.observe(document.documentElement,{childList:true,subtree:true})}return()=>{rootObserver?.disconnect();discoveryObserver?.disconnect();if(frame)cancelAnimationFrame(frame);originals.forEach((value,element)=>{element.style.fontSize=value})}},[scale]);return null}
+function ImportedFontStyle(){const appearance=useStore(state=>state.appearance),font=activeAppearanceFont(appearance),fontCss=appearanceFontCss(font),scale=Math.max(.85,Math.min(1.25,appearance?.fontScale??1)),css=`${fontCss}\n:root{--app-font-scale:${scale};}`;return <><style data-chachaji-font>{css}</style><GlobalTextScale scale={scale}/></>}
+function GlobalCanvasBackground(){
+  const location=useLocation();
+  const appearance=useStore(state=>state.appearance);
+  const imageAssets=useStore(state=>state.imageAssets);
+  const settings=useStore(state=>state.settings);
+  useEffect(()=>{
+    const media=window.matchMedia("(prefers-color-scheme: dark)");
+    const apply=()=>{
+      const mode=appearance?.themeMode??"light";
+      const dark=mode==="dark"||(mode==="system"&&media.matches);
+      const isHome=settings?.onboarded===true&&location.pathname==="/";
+      const isOnboarding=settings?.onboarded===false;
+      let color=isOnboarding?(dark?"#171417":"#f7f5f6"):(dark?"#101014":"#f8f7f8");
+      let image="none";
+      if(isHome&&appearance?.wallpaper){
+        const source=appearance.wallpaper;
+        if(source.type==="color") color=source.value||"#ffffff";
+        else{
+          const value=source.type==="asset"?imageAssets.find(asset=>asset.id===source.value)?.data:source.value;
+          if(value){
+            const escaped=value.replace(/\\/g,"\\\\").replace(/"/g,'\\"');
+            image=`url("${escaped}")`;
+            color=dark?"#101014":"#ffffff";
+          }
+        }
+      }
+      const root=document.documentElement;
+      root.style.setProperty("--chacha-page-background",color);
+      root.style.setProperty("--chacha-canvas-image",image);
+      const themeMeta=document.querySelector<HTMLMetaElement>('meta[name="theme-color"]');
+      if(themeMeta)themeMeta.content=color;
+    };
+    apply();
+    media.addEventListener("change",apply);
+    window.addEventListener("pageshow",apply);
+    return()=>{media.removeEventListener("change",apply);window.removeEventListener("pageshow",apply)};
+  },[appearance,imageAssets,location.pathname,settings?.onboarded]);
+  return null;
+}function GlobalTheme(){const mode=useStore(state=>state.appearance?.themeMode??"light");useEffect(()=>{const media=window.matchMedia("(prefers-color-scheme: dark)"),apply=()=>{const resolved=mode==="system"?(media.matches?"dark":"light"):mode;document.documentElement.dataset.chachaTheme=resolved;document.documentElement.dataset.chachaThemeMode=mode;document.documentElement.style.colorScheme=resolved;const themeMeta=document.querySelector<HTMLMetaElement>('meta[name="theme-color"]');if(themeMeta&&!document.documentElement.dataset.chachaHomeRecovery)themeMeta.content=resolved==="dark"?"#101014":"#f7f6f5"};apply();media.addEventListener("change",apply);window.addEventListener("pageshow",apply);return()=>{media.removeEventListener("change",apply);window.removeEventListener("pageshow",apply)}},[mode]);return null}function UnlockedApp(){const {ready,settings,reload}=useStore();useEffect(()=>{void reload();const onPageShow=(event:PageTransitionEvent)=>{if(event.persisted)void reload()};window.addEventListener("pageshow",onPageShow);return()=>window.removeEventListener("pageshow",onPageShow)},[reload]);if(!ready)return <div className="resume-loading" aria-label="正在恢复茶茶机"/>;if(!settings?.onboarded)return <Onboarding/>;return <MusicPlayerProvider><Suspense fallback={<RouteLoading/>}><ProactiveRunner/><ChatReplyCoordinator/><IncomingCallCoordinator/><NotificationCoordinator/><RouteErrorBoundary><Routes><Route element={<PhoneShell/>}><Route path="/" element={<Home/>}/><Route path="/characters" element={<CharactersPage/>}/><Route path="/characters/persona" element={<UserPersonaPage/>}/><Route path="/characters/:id" element={<CharacterDetail/>}/><Route path="/messages" element={<SocialLayout/>}><Route path="chats" element={<MessagesPage/>}/><Route path="feed" element={<FeedTab/>}/><Route path="contacts" element={<ContactsTab/>}/><Route path="me" element={<MeTab/>}/></Route><Route path="/messages/contacts/add" element={<AddFriendsPage/>}/><Route path="/messages/contacts/requests" element={<FriendRequestsPage/>}/><Route path="/messages/group/new" element={<GroupCreatePage/>}/><Route path="/messages/:id/members/add" element={<GroupMemberInvitePage/>}/><Route path="/messages/:id/settings" element={<ChatSettingsPage/>}/><Route path="/messages/:id/search" element={<ChatSearchPage/>}/><Route path="/messages/:conversationId/inner-voice/:actorType/:actorId" element={<InnerVoicePage/>}/><Route path="/messages/:id" element={<ChatPage/>}/><Route path="/appearance" element={<AppearancePage/>}/><Route path="/settings" element={<SettingsPage/>}/><Route path="/settings/stickers" element={<StickerSettingsPage/>}/><Route path="/settings/speech" element={<SpeechSettingsPage/>}/><Route path="/settings/images" element={<ImageGenerationSettingsPage/>}/><Route path="/lore" element={<LorePage/>}/><Route path="/lore/:id" element={<LoreDetail/>}/><Route path="/memories" element={<MemoriesPage/>}/><Route path="/memories/settings" element={<MemorySettingsPage/>}/><Route path="/mall" element={<MallPage/>}/><Route path="/music" element={<MusicPage/>}/><Route path="/music/report" element={<MusicReportPage/>}/><Route path="/couple-island" element={<CoupleIslandPage/>}/><Route path="/anniversary" element={<AnniversaryPage/>}/><Route path="/study" element={<StudyPage/>}/><Route path="/study/:subject" element={<StudySubjectPage/>}/><Route path="/forum/new" element={<ForumEditorPage mode="create"/>}/><Route path="/forum/:serverId/settings" element={<ForumEditorPage mode="settings"/>}/><Route path="/forum/:serverId/posts/:postId" element={<ForumPage/>}/><Route path="/forum/:serverId" element={<ForumPage/>}/><Route path="/forum" element={<ForumPage/>}/><Route path="/phone-check" element={<PhoneCheckPage/>}/><Route path="/phone-check/:characterId" element={<PhoneCheckPage/>}/><Route path="/meet" element={<MeetPage/>}/><Route path="/meet/new" element={<MeetCreatePage/>}/><Route path="/meet/favorites" element={<MeetFavoritesPage/>}/><Route path="/meet/:id" element={<MeetSessionPage/>}/><Route path="/feed" element={<Navigate to="/messages/feed" replace/>}/><Route path="*" element={<Navigate to="/" replace/>}/></Route></Routes></RouteErrorBoundary></Suspense></MusicPlayerProvider>}
+function App(){
+ const [locked,setLocked]=useState(true);
+ /* 小手机在锁屏后面照常加载，但没输对密码就是进不去 */
+ return <><UnlockedApp/>{locked&&<LockScreen onUnlock={()=>setLocked(false)}/>}</>;
+}
+installBrowserCompatibility();
+createRoot(document.getElementById("root")!).render(<StrictMode><AppErrorBoundary phase="root"><BrowserRouter><ImportedFontStyle/><GlobalTheme/><GlobalCanvasBackground/><App/></BrowserRouter></AppErrorBoundary></StrictMode>);
+
+
+
