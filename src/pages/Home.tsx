@@ -263,7 +263,7 @@ export default function Home(){
     if(swipe.axis==="horizontal"){
       if(event.cancelable)event.preventDefault();
       const el=desktopRef.current;
-      if(el){const edge=(page===0&&dx>0)||(page===pages-1&&dx<0),shift=dx*(edge?0.26:0.52);el.style.transition="none";el.style.transform=`translateX(${shift}px)`;el.style.opacity=String(1-Math.min(Math.abs(shift)/1000,0.22))}
+      if(el){const edge=(page===0&&dx>0)||(page===pages-1&&dx<0),shift=dx*(edge?0.3:1);el.style.transition="none";el.style.transform=`translateX(${shift}px) scale(${1-Math.min(Math.abs(shift)/3400,0.035)})`;el.style.opacity=String(1-Math.min(Math.abs(shift)/260,0.55))}
     }
   };
   const finishPageSwipe=(event:React.PointerEvent<HTMLDivElement>,cancelled=false)=>{
@@ -292,9 +292,9 @@ export default function Home(){
   const saveImageSource=async(source:AppearanceSource|undefined)=>{const target=imageTools;if(!target||target.busy)return;patchImageTools({busy:true,error:undefined});try{await updateWidget(target.itemId,target.field,source);setImageTools(null)}catch{patchImageTools({busy:false,error:"保存失败，请重试"})}};
   const chooseImage=async(file?:File)=>{const target=imageTools;if(!file||!target||target.busy)return;patchImageTools({busy:true,error:undefined});try{const asset=await compressImage(file,"widget");await db.imageAssets.put(asset);await updateWidget(target.itemId,target.field,{type:"asset",value:asset.id});setImageTools(null)}catch{patchImageTools({busy:false,error:"图片处理失败，请重试"})}};
   const applyImageUrl=()=>{const value=imageTools?.url.trim();if(!value){patchImageTools({error:"请输入图片 URL"});return}void saveImageSource({type:"url",value})};
-  const pagesReset=()=>{const el=desktopRef.current;if(!el)return;el.style.transition="transform .22s cubic-bezier(.22,.61,.36,1), opacity .22s ease";el.style.transform="translateX(0px)";el.style.opacity="1"};
-  const pagesSettle=(dir:number)=>{const el=desktopRef.current;if(!el)return;el.style.transition="none";el.style.transform=`translateX(${dir*26}px)`;el.style.opacity="0";requestAnimationFrame(()=>requestAnimationFrame(()=>{const e=desktopRef.current;if(!e)return;e.style.transition="transform .26s cubic-bezier(.22,.61,.36,1), opacity .26s ease";e.style.transform="translateX(0px)";e.style.opacity="1"}))};
-  const changePageAnimated=(next:number,dir:number)=>{if(next===page){pagesReset();return}const el=desktopRef.current;if(el){el.style.transition="transform .2s cubic-bezier(.22,.61,.36,1), opacity .2s ease";el.style.transform=`translateX(${-dir*44}px)`;el.style.opacity="0"}window.setTimeout(()=>{setPage(next);pagesSettle(dir)},190)};
+  const pagesReset=()=>{const el=desktopRef.current;if(!el)return;el.style.transition="transform .24s cubic-bezier(.22,.61,.36,1), opacity .24s ease";el.style.transform="translateX(0px) scale(1)";el.style.opacity="1"};
+  const pagesSettle=(dir:number)=>{const el=desktopRef.current;if(!el)return;el.style.transition="none";el.style.transform=`translateX(${dir*92}px) scale(.965)`;el.style.opacity="0";requestAnimationFrame(()=>requestAnimationFrame(()=>{const e=desktopRef.current;if(!e)return;e.style.transition="transform .32s cubic-bezier(.22,.61,.36,1), opacity .32s ease";e.style.transform="translateX(0px) scale(1)";e.style.opacity="1"}))};
+  const changePageAnimated=(next:number,dir:number)=>{if(next===page){pagesReset();return}const el=desktopRef.current;if(el){el.style.transition="transform .2s cubic-bezier(.22,.61,.36,1), opacity .2s ease";el.style.transform=`translateX(${-dir*92}px) scale(.965)`;el.style.opacity="0"}window.setTimeout(()=>{setPage(next);pagesSettle(dir)},210)};
   const switchPage=(index:number)=>{if(quickEditing||editing||dragRuntimeRef.current)return;setImageTools(null);changePageAnimated(index,index>page?1:-1)};
   const homePointerDown=(event:React.PointerEvent<HTMLDivElement>)=>{
     const target=event.target as HTMLElement;if(target.closest(".widget-image-tools")||target.closest(".widget-inline-text-input")||target.closest("[data-widget-image-trigger]")||target.closest(".desktop-edit-done"))return;
