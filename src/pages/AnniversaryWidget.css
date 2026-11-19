@@ -1,0 +1,129 @@
+/* ============================================================
+   桌面「纪念日」小组件
+   2x2 格，显示最近的那个日子；点一下进纪念日 App。
+   深浅色都适配（html[data-chacha-theme=dark]）。
+   ============================================================ */
+
+/* 桌面格子自带的白色底/边框让位给卡片自己画，内容才能铺满 2x2 */
+.desktop-widget.widget-anniversary-card {
+  display: flex;
+  align-items: stretch;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  overflow: visible;
+}
+
+.anniv-widget {
+  --aw-bg: #ffffff;
+  --aw-border: #ece9ec;
+  --aw-title: #353236;
+  --aw-muted: #969197;
+  --aw-accent: #6c5ce7;
+  --aw-rose: #e0577f;
+  --aw-chip: #efeafd;
+
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1 1 auto;
+  align-self: stretch;
+  width: 100%;
+  min-height: 0;
+  padding: 12px 13px;
+  border: 1px solid var(--aw-border);
+  border-radius: 18px;
+  background: var(--aw-bg);
+  color: var(--aw-title);
+  text-align: left;
+  font: inherit;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  overflow: hidden;
+}
+
+html[data-chacha-theme=dark] /* 桌面格子自带的白色底/边框让位给卡片自己画，内容才能铺满 2x2 */
+.desktop-widget.widget-anniversary-card {
+  display: flex;
+  align-items: stretch;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  overflow: visible;
+}
+
+html[data-chacha-theme=dark] .anniv-widget {
+  --aw-bg: #17171d;
+  --aw-border: #2b2a31;
+  --aw-title: #f2edf1;
+  --aw-muted: #97929e;
+  --aw-accent: #a99cff;
+  --aw-rose: #ff9ec2;
+  --aw-chip: #2a2340;
+}
+
+.anniv-widget-label {
+  font-size: 10px;
+  letter-spacing: 0.6px;
+  color: var(--aw-muted);
+}
+
+.anniv-widget-title {
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--aw-title);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.anniv-widget-count {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  margin-top: auto;
+}
+
+.anniv-widget-count strong {
+  font-size: 27px;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--aw-accent);
+  font-variant-numeric: tabular-nums;
+}
+
+.anniv-widget-count small {
+  font-size: 10px;
+  color: var(--aw-muted);
+}
+
+.anniv-widget-date {
+  font-size: 10px;
+  color: var(--aw-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 没有数据时的空态 */
+.anniv-widget.empty {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 6px;
+  background: var(--aw-chip);
+  border-style: dashed;
+}
+
+.anniv-widget.empty b {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--aw-title);
+}
+
+.anniv-widget.empty small {
+  font-size: 10px;
+  color: var(--aw-muted);
+}
