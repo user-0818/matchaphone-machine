@@ -1,0 +1,280 @@
+/* 开机锁屏：深灰底 + 磨砂玻璃 + 雨滴/涟漪 + sweetheart，上滑输密码解锁 */
+.sw-lock {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: #191a1c;
+  touch-action: none;
+  transition: transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1), opacity 0.55s ease;
+  font-family: "Cormorant Garamond", "Noto Serif SC", "Songti SC", "Times New Roman", serif;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+.sw-lock.leaving {
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ---------- 背景 ---------- */
+.sw-wash {
+  position: absolute;
+  inset: -20%;
+  background:
+    radial-gradient(38% 32% at 26% 24%, rgba(186, 170, 255, 0.1), transparent 70%),
+    radial-gradient(42% 34% at 78% 74%, rgba(255, 190, 214, 0.09), transparent 72%);
+  filter: blur(40px);
+  animation: sw-drift 24s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+@keyframes sw-drift {
+  from { transform: translate3d(-2%, -1%, 0) scale(1.02); }
+  to { transform: translate3d(2%, 2%, 0) scale(1.06); }
+}
+
+.sw-frost {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.02) 38%, rgba(255, 255, 255, 0.06) 100%);
+  backdrop-filter: blur(9px) saturate(112%);
+  -webkit-backdrop-filter: blur(9px) saturate(112%);
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.sw-rain {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.sw-drip {
+  position: absolute;
+  border-radius: 50% 50% 50% 50% / 62% 62% 38% 38%;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.02),
+    rgba(255, 255, 255, 0.12) 46%,
+    rgba(255, 255, 255, 0.34) 84%,
+    rgba(255, 255, 255, 0.52) 100%
+  );
+  box-shadow: inset 0 2px 3px rgba(255, 255, 255, 0.2), inset 0 -3px 5px rgba(0, 0, 0, 0.18);
+  backdrop-filter: blur(2.4px);
+  -webkit-backdrop-filter: blur(2.4px);
+  animation: sw-slip var(--sw-dur, 8s) linear var(--sw-delay, 0s) infinite;
+  will-change: transform, opacity;
+}
+@keyframes sw-slip {
+  0% { transform: translateY(-14vh) scaleY(0.86); opacity: 0; }
+  9% { opacity: var(--sw-o, 0.4); }
+  20% { transform: translateY(4vh) scaleY(1); }
+  72% { opacity: var(--sw-o, 0.4); }
+  92% { transform: translateY(88vh) scaleY(1.16); opacity: 0; }
+  100% { transform: translateY(88vh) scaleY(1.16); opacity: 0; }
+}
+
+.sw-hang {
+  position: absolute;
+  border-radius: 50% 50% 50% 50% / 68% 68% 32% 32%;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.14) 52%, rgba(255, 255, 255, 0.4));
+  box-shadow: inset 0 2px 3px rgba(255, 255, 255, 0.22), inset 0 -3px 4px rgba(0, 0, 0, 0.16);
+  backdrop-filter: blur(2.4px);
+  -webkit-backdrop-filter: blur(2.4px);
+  opacity: 0;
+  animation: sw-swell var(--sw-dur, 6s) ease-in var(--sw-delay, 0s) infinite;
+}
+@keyframes sw-swell {
+  0% { opacity: 0; transform: scale(0.4, 0.18); }
+  14% { opacity: var(--sw-o, 0.4); }
+  62% { opacity: var(--sw-o, 0.4); transform: scale(1, 1); }
+  76% { transform: scale(1.02, 1.45) translateY(9px); opacity: var(--sw-o, 0.4); }
+  100% { transform: scale(1.02, 1.5) translateY(46px); opacity: 0; }
+}
+
+.sw-ripple {
+  position: absolute;
+  bottom: 12dvh;
+  border-radius: 50%;
+  border: 1.6px solid rgba(255, 255, 255, 0.58);
+  background: radial-gradient(ellipse at 50% 50%, rgba(255, 255, 255, 0.24), rgba(255, 255, 255, 0.07) 55%, transparent 76%);
+  box-shadow: 0 0 14px rgba(255, 255, 255, 0.14), inset 0 0 8px rgba(255, 255, 255, 0.1);
+  opacity: 0;
+  animation: sw-ripple var(--sw-dur, 8s) linear var(--sw-delay, 0s) infinite;
+}
+@keyframes sw-ripple {
+  0%, 84% { transform: scale(0.2, 0.1); opacity: 0; }
+  88% { opacity: 0.95; }
+  94% { transform: scale(1.5, 0.62); opacity: 0.5; }
+  100% { transform: scale(2.6, 0.95); opacity: 0; }
+}
+
+.sw-grain {
+  position: absolute;
+  inset: 0;
+  opacity: 0.05;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2'/></filter><rect width='140' height='140' filter='url(%23n)'/></svg>");
+}
+.sw-vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(120% 90% at 50% 50%, transparent 55%, rgba(0, 0, 0, 0.34) 100%);
+}
+
+/* ---------- 文字 ---------- */
+.sw-brand {
+  position: relative;
+  z-index: 2;
+  color: #f6f5f6;
+  font-size: clamp(30px, 9.2vw, 66px);
+  font-weight: 400;
+  letter-spacing: 0.09em;
+  text-transform: lowercase;
+  white-space: nowrap;
+  text-shadow: 0 0 26px rgba(255, 255, 255, 0.14);
+  opacity: 0;
+  filter: blur(8px);
+  transition: transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1), opacity 0.6s ease, filter 0.6s ease;
+  animation: sw-intro 5s cubic-bezier(0.22, 0.61, 0.36, 1) 1 both;
+}
+@keyframes sw-intro {
+  0% { opacity: 0; filter: blur(9px); letter-spacing: 0.12em; transform: translateY(6px); }
+  13% { opacity: 0.55; filter: blur(5px); }
+  30% { opacity: 1; filter: blur(0); letter-spacing: 0.09em; transform: translateY(0); }
+  76% { opacity: 1; filter: blur(0); letter-spacing: 0.09em; }
+  95% { opacity: 0; filter: blur(5px); letter-spacing: 0.11em; }
+  100% { opacity: 0; filter: blur(6px); }
+}
+.sw-lock.pad-open .sw-brand {
+  animation: none;
+  opacity: 0.92;
+  filter: blur(0);
+  transform: translateY(-32vh) scale(0.62);
+  letter-spacing: 0.11em;
+}
+
+.sw-swipe {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: calc(46px + env(safe-area-inset-bottom));
+  z-index: 2;
+  text-align: center;
+  color: #ffffff;
+  letter-spacing: 0.18em;
+  font-size: 12px;
+  animation: sw-bob 2.6s ease-in-out infinite;
+  cursor: pointer;
+}
+@keyframes sw-bob {
+  0%, 100% { transform: translateY(0); opacity: 0.24; }
+  50% { transform: translateY(-8px); opacity: 0.46; }
+}
+.sw-lock.pad-open .sw-swipe {
+  animation: none;
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* ---------- 密码盘 ---------- */
+.sw-pad {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 3;
+  padding: 24px max(24px, env(safe-area-inset-left)) calc(78px + env(safe-area-inset-bottom)) max(24px, env(safe-area-inset-right));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+  transform: translateY(105%);
+  transition: transform 0.55s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+.sw-lock.pad-open .sw-pad {
+  transform: translateY(0);
+}
+
+.sw-dots {
+  display: flex;
+  gap: 11px;
+  height: 12px;
+}
+.sw-dots i {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.34);
+  transition: all 0.2s ease;
+}
+.sw-dots i.on {
+  background: rgba(255, 255, 255, 0.85);
+  border-color: transparent;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.35);
+}
+.sw-dots.wrong {
+  animation: sw-shake 0.42s ease;
+}
+@keyframes sw-shake {
+  0%, 100% { transform: translateX(0); }
+  22% { transform: translateX(-9px); }
+  55% { transform: translateX(8px); }
+  80% { transform: translateX(-4px); }
+}
+
+.sw-keys {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(12px, 2.6vh, 20px) clamp(22px, 7vw, 40px);
+}
+.sw-key {
+  width: clamp(58px, 17.5vw, 74px);
+  height: clamp(58px, 17.5vw, 74px);
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.05);
+  color: #f2f1f2;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-weight: 400;
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: background 0.15s ease, transform 0.12s ease;
+}
+.sw-key:active {
+  background: rgba(255, 255, 255, 0.16);
+  transform: scale(0.94);
+}
+.sw-key.blank {
+  border: 0;
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sw-wash,
+  .sw-drip,
+  .sw-hang,
+  .sw-ripple,
+  .sw-brand,
+  .sw-swipe {
+    animation: none !important;
+  }
+  .sw-brand {
+    opacity: 1;
+    filter: none;
+  }
+}
